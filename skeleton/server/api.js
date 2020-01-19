@@ -45,16 +45,22 @@ router.post("/initsocket", (req, res) => {
 
 router.get("/advice", (req, res) => {
   // empty selector means get all documents
-  //Advice.deleteMany({}).then((a)=>{1});
+  //Advice.deleteMany({}).then((a)=>{1}); //uncomment&refresh to delete all advice
   Advice.find({}).then((foundAdvices) => res.send(foundAdvices));
 });
 
 router.post("/advice"
           // , auth.ensureLoggedIn
            , (req, res) => {
+    let creator_id = "No ID";
+    let creator_name = "No Name";
+    if(req.user){
+      creator_id = req.user._id;
+      creator_name = req.user.name;
+    }
     const newAdvice = new Advice({
-    creator_id: "temporarycreatrID",//req.user.id,
-    creator_name: "temporarycreatrname",//req.user.name,
+    creator_id: creator_id,
+    creator_name: creator_name,
     advice: req.body.advice,
     adviceStory: req.body.adviceStory,
     dateSubmitted: "temporaryDate",

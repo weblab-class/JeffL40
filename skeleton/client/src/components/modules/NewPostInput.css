@@ -34,3 +34,9 @@
   color: var(--white);
   background-color: var(--primary);
 }
+.textInput{
+    width: 100px;
+}
+.separator{
+    margin-top:8px;
+}

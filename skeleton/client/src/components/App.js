@@ -63,7 +63,6 @@ class App extends Component {
     if (
       true||
       this.state.userId){
-        //console.log("isShowingPostPopup: " + this.state.isShowingPostPopup);
       return (
         <>
           <NavBar

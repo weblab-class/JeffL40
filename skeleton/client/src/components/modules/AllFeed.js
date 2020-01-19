@@ -59,42 +59,27 @@ class AllFeed extends Component {
         else {
             label = "category: " + this.props.categoryName;
         }
+        let sph = "sidePaneExpanded";
         if(this.props.isSidePaneHidden){
-            return(
-                <div className="sidePaneCollapsed">
-                THISISALL_FEED...and... {label}
-                <NewAdvice addNewAdvice={this.addNewAdvice}/>
-                <div className="categoryLabel">
-                    CATEGORYLABELHERE
-                </div>
-                {advices}
-                {this.props.isShowingPostPopup 
-                    && <PostPopup
-                        closePostPopup={this.closePostPopup}
-                    />
-                }
-                </div>
-                
-            )
+            sph = "sidePaneCollapsed";
         }
-        else{
-            return(
-                    <div className="sidePaneExpanded">
-                        THISISALL_FEED...and... {label}
-                        <NewAdvice addNewAdvice={this.addNewAdvice}/>
-                        <div className="categoryLabel">
-                            CATEGORYLABELHERE
-                        </div>
-                        {advices}
-                        {this.props.isShowingPostPopup 
-                            && <PostPopup
-                                closePostPopup={this.props.closePostPopup}
-                            />
-                        }
-                    </div>
-
-            )
-        }
+        return(
+            <div className={sph}>
+            THISISALL_FEED...and... {label}
+            <NewAdvice addNewAdvice={this.addNewAdvice}/>
+            <div className="categoryLabel">
+                CATEGORYLABELHERE
+            </div>
+            {advices}
+            {this.props.isShowingPostPopup 
+                && <PostPopup
+                    closePostPopup={this.props.closePostPopup}
+                    addNewAdvice={this.addNewAdvice}
+                />
+            }
+            </div>
+            
+        )
     }
 }
 export default AllFeed;

@@ -16,9 +16,12 @@ class NavBar extends Component {
         return(
 
                 <nav className = "navbarContainer">
-                        <Link to="/" className="navbarLink u-inlineBlock">
-                        Home
-                        </Link>
+                        <a
+                            className="navbarLink u-inlineBlock"
+                            href="/"
+                        >
+                            Home
+                        </a>
                         <Link to="/profile" className="navbarLink u-inlineBlock">
                         Profile
                         </Link>

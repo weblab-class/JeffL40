@@ -69,13 +69,11 @@ class App extends Component {
             handleLogout={this.handleLogout}
             openPostPopup = {this.openPostPopup}
           />
-          <BrowseContainer
-            userId={this.state.userId}
-            isShowingPostPopup = {this.state.isShowingPostPopup}
-            closePostPopup={this.closePostPopup}
-          />
-          
-          
+            <BrowseContainer
+              userId={this.state.userId}
+              isShowingPostPopup = {this.state.isShowingPostPopup}
+              closePostPopup={this.closePostPopup}
+            />
         </>
       )
     }

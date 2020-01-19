@@ -89,6 +89,9 @@ class ThreePostInput extends Component {
         value1: "",
         value2: "",
       });
+      if(this.props.closePostPopup){
+        this.props.closePostPopup();
+        };
     };
   
     render() {
@@ -142,7 +145,12 @@ class NewAdvice extends Component {
     addAdvice = (value0, value1, value2) => {
         const body = {advice: value0, adviceStory: value1, category: value2};
         post("/api/advice", body).then((receivedAdvice) => {
-            this.props.addNewAdvice(receivedAdvice);
+            if( this.props.shouldAddNewAdvice 
+                && this.props.shouldAddNewAdvice(receivedAdvice))
+                {this.props.addNewAdvice(receivedAdvice);}
+            else if (this.props.shouldAddNewAdvice === null){
+                this.props.addNewAdvice(receivedAdvice);
+            }
         })
     }
     render() {
@@ -150,7 +158,9 @@ class NewAdvice extends Component {
                     defaultText0="New Advice"
                     defaultText1="storyGoesHere"
                     defaultText2="categoryGoesHere"
-                    onSubmit={this.addAdvice}/>
+                    onSubmit={this.addAdvice}
+                    closePostPopup={this.props.closePostPopup}
+                    />
     }
 }
 

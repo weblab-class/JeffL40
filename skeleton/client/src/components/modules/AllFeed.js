@@ -21,17 +21,33 @@ class AllFeed extends Component {
         }
     }
     componentDidMount(){
-        get("/api/advice").then((adviceObjs) => {
+        //body
+        const query = { idQueriedUser: this.props.idQueriedUser
+                     , categoryName: this.props.categoryName};
+        console.log("allFeed received: " , query);
+        console.log('query.idQueriedUser === "null"', query.idQueriedUser === "null");
+        get("/api/advice", query).then((adviceObjs) => {
             let reversedAdviceObjs = adviceObjs.reverse();
             reversedAdviceObjs.map((adviceObj) => {
               this.setState({ adviceList: this.state.adviceList.concat([adviceObj]) });
-            });
-          });
+        });
+        });
     }
     addNewAdvice = ( adviceObject) => {
         this.setState({
             adviceList: [ adviceObject].concat(this.state.adviceList),
             });
+    }
+    shouldAddNewAdvice = (adviceObject) => {
+        if( this.props.idQueriedUser !== "") {
+            return adviceObject.creator_id === this.props.idQueriedUser;
+        }
+        else if ( this.props.categoryName !== "") {
+            return adviceObject.category === this.props.categoryName;
+        }
+        else {
+            return true;
+        }
     }
     render(){
         let advices = null;
@@ -66,7 +82,10 @@ class AllFeed extends Component {
         return(
             <div className={sph}>
             THISISALL_FEED...and... {label}
-            <NewAdvice addNewAdvice={this.addNewAdvice}/>
+            <NewAdvice 
+                addNewAdvice={this.addNewAdvice}
+                shouldAddNewAdvice = {this.shouldAddNewAdvice}
+            />
             <div className="categoryLabel">
                 CATEGORYLABELHERE
             </div>
@@ -75,6 +94,7 @@ class AllFeed extends Component {
                 && <PostPopup
                     closePostPopup={this.props.closePostPopup}
                     addNewAdvice={this.addNewAdvice}
+                    shouldAddNewAdvice = {this.shouldAddNewAdvice}
                 />
             }
             </div>

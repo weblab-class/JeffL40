@@ -29,7 +29,11 @@ class PostPopup extends Component {
                 </div>
                 <div className="formContainer">
                     cant_click_here!
-                    <NewAdvice addNewAdvice={this.props.addNewAdvice}/>
+                    <NewAdvice 
+                        addNewAdvice={this.props.addNewAdvice}
+                        shouldAddNewAdvice = {this.props.shouldAddNewAdvice}
+                        closePostPopup={this.props.closePostPopup}
+                    />
                 </div>
             </>
         );

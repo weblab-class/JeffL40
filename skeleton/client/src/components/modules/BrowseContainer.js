@@ -39,8 +39,35 @@ class BrowseContainer extends Component {
                 />
                 <Router>
                     <AllFeed
-                        path = "/user/:userName"
-                        categoryName = {null}
+                        path = "/"
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        userId = {this.props.userId}
+                        categoryName = ""
+                        idQueriedUser = ""
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup={this.props.closePostPopup}
+                    />
+                    <AllFeed
+                        path = "/user"
+                        idQueriedUser = ""
+                        categoryName = ""
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        userId = {this.props.userId}
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup={this.props.closePostPopup}
+                    />
+                    <AllFeed
+                        path = "/user/:idQueriedUser"
+                        categoryName = ""
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        userId = {this.props.userId}
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup={this.props.closePostPopup}
+                    />
+                    <AllFeed
+                        path = "/category/"
+                        categoryName = ""
+                        idQueriedUser = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
@@ -48,18 +75,9 @@ class BrowseContainer extends Component {
                     />
                     <AllFeed
                         path = "/category/:categoryName"
-                        userName = {null}
+                        idQueriedUser = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         userId = {this.props.userId}
-                        isShowingPostPopup = {this.props.isShowingPostPopup}
-                        closePostPopup={this.props.closePostPopup}
-                    />
-                    <AllFeed
-                        path = "/"
-                        isSidePaneHidden={this.state.isSidePaneHidden}
-                        userId = {this.props.userId}
-                        categoryName = ""
-                        userName = {null}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                     />

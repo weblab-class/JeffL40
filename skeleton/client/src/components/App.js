@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import LoginPage from "./pages/LoginPage.js";
+import Profile from "./pages/Profile.js";
+import BrowseContainer from "./modules/BrowseContainer.js";
+import PostPopup from "./modules/PostPopup.js";
 
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import NavBar from "./modules/NavBar.js";
+import SidePane from "./modules/SidePane.js";
 
 /**
  * Define the "App" component as a class.
@@ -18,6 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      isShowingPostPopup: false,
     };
   }
 
@@ -28,6 +34,7 @@ class App extends Component {
         this.setState({ userId: user._id });
       }
     });
+    document.body.style.backgroundColor="white";
   }
 
   handleLogin = (res) => {
@@ -44,21 +51,68 @@ class App extends Component {
     post("/api/logout");
   };
 
+  closePostPopup = () => {
+    this.setState({ isShowingPostPopup: false});
+  };
+
+  openPostPopup = () => {
+    this.setState({isShowingPostPopup: true});
+  };
+
   render() {
-    return (
-      <>
-        <Router>
-          <Skeleton
-            path="/"
+    if (
+      true||
+      this.state.userId){
+        //console.log("isShowingPostPopup: " + this.state.isShowingPostPopup);
+      return (
+        <>
+          <NavBar
+            handleLogout={this.handleLogout}
+            openPostPopup = {this.openPostPopup}
+          />
+          <BrowseContainer
+            userId={this.state.userId}
+            isShowingPostPopup = {this.state.isShowingPostPopup}
+            closePostPopup={this.closePostPopup}
+          />
+          
+          
+        </>
+      )
+    }
+    /**
+     {this.state.isShowingPostPopup 
+            && <PostPopup
+                  closePostPopup={this.closePostPopup}
+              />
+      }
+     */
+    /**
+          <NavBar
+            handleLogout={this.handleLogout}
+          />
+     */
+    /**
+          <Router>
+            <BrowseContainer 
+              path="/" 
+              userId={this.state.userId} 
+            />
+            <Profile path="/profile/:userId" />
+            <NotFound default />
+          </Router>
+     */
+    else {
+      return(
+        <>
+          <LoginPage
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
-            userId={this.state.userId}
+            userId={this.userId}
           />
-          <NotFound default />
-        </Router>
-      </>
-    );
+        </>
+      )
+    }
   }
 }
-
 export default App;

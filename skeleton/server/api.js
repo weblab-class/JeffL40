@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Advice = require("./models/advice");
 
 // import authentication library
 const auth = require("./auth");
@@ -41,6 +42,27 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.get("/advice", (req, res) => {
+  // empty selector means get all documents
+  //Advice.deleteMany({}).then((a)=>{1});
+  Advice.find({}).then((foundAdvices) => res.send(foundAdvices));
+});
+
+router.post("/advice"
+          // , auth.ensureLoggedIn
+           , (req, res) => {
+    const newAdvice = new Advice({
+    creator_id: "temporarycreatrID",//req.user.id,
+    creator_name: "temporarycreatrname",//req.user.name,
+    advice: req.body.advice,
+    adviceStory: req.body.adviceStory,
+    dateSubmitted: "temporaryDate",
+    category: req.body.category,
+  });
+
+  newAdvice.save().then((savedAdvice) => res.send(savedAdvice));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

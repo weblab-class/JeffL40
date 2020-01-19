@@ -1,0 +1,23 @@
+.sidePaneCollapsed{
+    display:flex;
+    flex-direction: column;
+    border: black 1px solid;
+    width:1488px;
+    width: 100%;
+    margin-left:32px;
+    justify-content: center;
+}
+.sidePaneExpanded{
+    display:flex;
+    flex-direction: column;
+    border: black 1px solid;
+    width:1170px;
+    width: 100%;
+    margin-left:350px;
+    justify-content: center;
+}
+.categoryLabel{
+    display:flex;
+    justify-content: center;
+    border: red 1px solid;
+}

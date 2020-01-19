@@ -1,0 +1,24 @@
+.theBarExpanded{
+    display:flex;
+    position:fixed;
+    height: 100%;
+    background-color:grey;
+    border: 1px solid red;
+    width:32px;
+    margin-left:318px;
+}
+.theBarCollapsed{
+    display:flex;
+    position:fixed;
+    height: 100%;
+    background-color:grey;
+    border: 1px solid red;
+    width:32px;
+    margin-left:0px;
+}
+.theBarExpanded:hover{
+    opacity:50%;
+}
+.theBarCollapsed:hover{
+    opacity:50%;
+}

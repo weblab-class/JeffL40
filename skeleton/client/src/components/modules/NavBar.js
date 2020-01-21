@@ -13,16 +13,23 @@ class NavBar extends Component {
         super(props);
     }
     render(){
+        //console.log( "userId passed to navbar", this.props.userId);
+        let profileString = "/profile/";
+        if(this.props.userId) {
+            profileString = profileString + this.props.userId;
+        }
+        else {
+            profileString = profileString + "randomProfileLol"
+        }
         return(
-
                 <nav className = "navbarContainer">
-                        <a
-                            className="navbarLink u-inlineBlock"
-                            href="/"
-                        >
-                            Home
-                        </a>
-                        <Link to="/profile" className="navbarLink u-inlineBlock">
+                        <Link to="/" className="navbarLink u-inlineBlock">
+                        Home
+                        </Link>
+                        {/* <a href="/" className="navbarLink u-inlineBlock">
+                        Home
+                        </a> */}
+                        <Link to={profileString} className="navbarLink u-inlineBlock">
                         Profile
                         </Link>
                         <a

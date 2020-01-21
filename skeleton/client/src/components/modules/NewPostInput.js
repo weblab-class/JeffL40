@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-
+import { Link } from "@reach/router";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
+//for reference
 class NewPostInput extends Component {
   constructor(props) {//props: defaultText, onSubmit
     super(props);
@@ -50,6 +51,54 @@ class NewPostInput extends Component {
     );
   }
 }
+
+class SearchInput extends Component {
+    constructor(props) {//props: defaultText, onSubmit
+      super(props);
+  
+      this.state = {
+        value: "",
+      };
+    }
+  
+    // called whenever the user types in the new post input box
+    handleChange = (event) => {
+      this.setState({
+        value: event.target.value,
+      });
+    };
+    
+    // called when the user hits "Submit" for a new post
+    // handleSubmit = (event) => {
+    //   event.preventDefault();
+    //   this.props.onSubmit && this.props.onSubmit(this.state.value);
+    //   this.setState({
+    //     value: "",
+    //   });
+    // };
+  
+    render() {
+      let linkDest = "/searchResults/";
+      linkDest = linkDest + this.state.value;
+      return (
+        <div className="u-flex">
+          <input
+            type="text"
+            placeholder={this.props.defaultText}
+            value={this.state.value}
+            onChange={this.handleChange}
+            className="textInput"
+          />
+          {/* <a href={linkDest}>
+              GO!
+          </a> */}
+          <Link to={linkDest} onClick={this.props.onSubmit}>
+              GO!
+          </Link>
+        </div>
+      );
+    }
+  }
 
 class ThreePostInput extends Component {
     constructor(props) {//props: defaultText0,1,2, onSubmit
@@ -151,7 +200,7 @@ class NewAdvice extends Component {
             else if (this.props.shouldAddNewAdvice === null){
                 this.props.addNewAdvice(receivedAdvice);
             }
-        })
+        });
     }
     render() {
         return <ThreePostInput 
@@ -242,4 +291,4 @@ class NewMessage extends Component {
   }
 }
 
-export { NewAdvice, NewComment, NewStory, NewMessage };
+export { NewAdvice, NewComment, NewStory, NewMessage, SearchInput };

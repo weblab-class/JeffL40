@@ -1,3 +1,6 @@
+.u-showBorder{
+    border:1px solid black;
+}
 .sidePaneCollapsed{
     display:flex;
     flex-direction: column;

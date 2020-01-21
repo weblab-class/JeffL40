@@ -34,7 +34,10 @@ class SidePane extends Component {
         else{//side pane is expanded
             return(
                     <div className="wrapper expanded">
-                        <SearchBox/>
+                        TESTTTT
+                        <SearchBox
+                            rerenderBrowseContainer={this.props.rerenderBrowseContainer}
+                        />
                         <ClickyBar 
                             isSidePaneHidden = {this.props.isSidePaneHidden}
                             hideSidePane = {this.props.hideSidePane}

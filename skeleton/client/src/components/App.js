@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import LoginPage from "./pages/LoginPage.js";
-import Profile from "./pages/Profile.js";
+//import Profile from "./pages/Profile.js";
 import BrowseContainer from "./modules/BrowseContainer.js";
 import PostPopup from "./modules/PostPopup.js";
 
@@ -22,7 +22,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //auxilliaryState : -1,
       userId: undefined,
+      userName: undefined,
+      userLikes: 0,
+      userDislikes: 0,
+      userAdvices: 0,
       isShowingPostPopup: false,
     };
   }
@@ -31,11 +36,21 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ 
+          userId: user._id,
+          userName: user.name,
+          userLikes: user.numLikes,
+          userDislikes: user.numDislikes,
+          userAdvices: user.numAdvices,
+        });
       }
     });
     document.body.style.backgroundColor="white";
   }
+
+  // changeAuxilliaryState = () => {
+  //   this.setState({ auxilliaryState: -this.state.auxilliaryState});
+  // }
 
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
@@ -61,16 +76,21 @@ class App extends Component {
 
   render() {
     if (
-      true||
+      //true||
       this.state.userId){
       return (
         <>
           <NavBar
             handleLogout={this.handleLogout}
             openPostPopup = {this.openPostPopup}
+            userId={this.state.userId}
           />
             <BrowseContainer
               userId={this.state.userId}
+              userName={this.state.userName}
+              userLikes={this.state.userLikes}
+              userDislikes={this.state.userDislikes}
+              userAdvices={this.state.userAdvices}
               isShowingPostPopup = {this.state.isShowingPostPopup}
               closePostPopup={this.closePostPopup}
             />

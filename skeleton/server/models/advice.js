@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 //define a story schema for the database
 const AdviceSchema = new mongoose.Schema({
@@ -6,8 +7,11 @@ const AdviceSchema = new mongoose.Schema({
   creator_name: String,
   advice: String,
   adviceStory: String,
-  dateSubmitted: String,
   category: String,
+  timeStamp: {type: Date, default: Date.now},
+  likedOrDislikedBy: [ObjectId],
+  likedBy: [ObjectId],
+  dislikedBy: [ObjectId],
 });
 
 // compile model from schema

@@ -5,6 +5,8 @@ import NotFound from "../pages/NotFound.js";
 //import GoogleLogin, { GoogleLogout } from "react-google-login";
 import SidePane from "./SidePane.js";
 import AllFeed from "./AllFeed.js";
+import Profile from "./Profile.js";
+import SearchResults from "./SearchResults.js";
 
 import "../../utilities.css";
 import "./BrowseContainer.css";
@@ -29,14 +31,18 @@ class BrowseContainer extends Component {
     componentDidMount(){
 
     }
+    // componentDidUpdate(prevProps){
+
+    // }
     render(){
         return(
             <div className="container">
-                <SidePane
+                {/* <SidePane
                     isSidePaneHidden = {this.state.isSidePaneHidden}
                     hideSidePane = {this.hideSidePane}
                     showSidePane = {this.showSidePane}
-                />
+                /> */}
+                <div>
                 <Router>
                     <AllFeed
                         path = "/"
@@ -46,6 +52,8 @@ class BrowseContainer extends Component {
                         idQueriedUser = ""
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/user"
@@ -55,6 +63,8 @@ class BrowseContainer extends Component {
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/user/:idQueriedUser"
@@ -63,6 +73,8 @@ class BrowseContainer extends Component {
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/category/"
@@ -72,6 +84,8 @@ class BrowseContainer extends Component {
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/category/:categoryName"
@@ -80,9 +94,40 @@ class BrowseContainer extends Component {
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
+                    />
+                    <Profile
+                        path = "/profile/:idProfile"
+                        userId = {this.props.userId}
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup = {this.props.closePostPopup}
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
+                    />
+                    <SearchResults
+                        path = "/searchResults/:ambiguousQuery"
+                        userId = {this.props.userId}
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup = {this.props.closePostPopup}
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
+                    />
+                    <SearchResults
+                        path = "/searchResults/"
+                        ambiguousQuery = ""
+                        userId = {this.props.userId}
+                        isShowingPostPopup = {this.props.isShowingPostPopup}
+                        closePostPopup = {this.props.closePostPopup}
+                        isSidePaneHidden={this.state.isSidePaneHidden}
+                        hideSidePane = {this.hideSidePane}
+                    showSidePane = {this.showSidePane}
                     />
                     <NotFound default />
                 </Router>
+                </div>
             </div>
         )
     }

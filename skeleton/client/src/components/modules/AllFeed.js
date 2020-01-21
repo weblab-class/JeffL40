@@ -6,6 +6,7 @@ import { get } from "../../utilities";
 import SingleCard from "./SingleCard.js";
 import {NewAdvice} from "./NewPostInput.js";
 import PostPopup from "./PostPopup.js";
+import SidePane from "./SidePane.js";
 
 import "../../utilities.css";
 import "./AllFeed.css";
@@ -39,6 +40,7 @@ class AllFeed extends Component {
             });
     }
     shouldAddNewAdvice = (adviceObject) => {
+        //return true;
         if( this.props.idQueriedUser !== "") {
             return adviceObject.creator_id === this.props.idQueriedUser;
         }
@@ -53,24 +55,27 @@ class AllFeed extends Component {
         let advices = null;
         const hasAdvice = this.state.adviceList.length !== 0;
         if (hasAdvice) {
-            advices = this.state.adviceList.map((advObj) => (
-                <SingleCard
-                key={`Card_${advObj._id}`}
-                //_id={advObj._id}
-                creator_name={advObj.creator_name}
-                creator_id={advObj.creator_id}
-                advice={advObj.advice}
-                adviceStory={advObj.adviceStory}
-                category={advObj.category}
-                //userId={this.props.userId}
-                />
+            advices = this.state.adviceList
+                      .filter(advObj => this.shouldAddNewAdvice(advObj))
+                      .map((advObj) => (
+                        <SingleCard
+                            key={`Card_${advObj._id}`}
+                            adviceId={advObj._id}
+                            creator_name={advObj.creator_name}
+                            creator_id={advObj.creator_id}
+                            advice={advObj.advice}
+                            adviceStory={advObj.adviceStory}
+                            category={advObj.category}
+                            timeStamp={advObj.timeStamp}
+                            userId={this.props.userId}
+                        />
         ));
         } else {
-            advices = <div>No stories!</div>;
+            advices = <div>No advices!</div>;
         }
         let label = "";
-        if (this.props.userName) {
-            label = "user: " + this.props.userName;
+        if (this.props.idQueriedUser !== "") {
+            label = "user: " + this.props.idQueriedUser;
         }
         else {
             label = "category: " + this.props.categoryName;
@@ -80,23 +85,32 @@ class AllFeed extends Component {
             sph = "sidePaneCollapsed";
         }
         return(
-            <div className={sph}>
-            THISISALL_FEED...and... {label}
-            <NewAdvice 
-                addNewAdvice={this.addNewAdvice}
-                shouldAddNewAdvice = {this.shouldAddNewAdvice}
-            />
-            <div className="categoryLabel">
-                CATEGORYLABELHERE
-            </div>
-            {advices}
-            {this.props.isShowingPostPopup 
-                && <PostPopup
-                    closePostPopup={this.props.closePostPopup}
-                    addNewAdvice={this.addNewAdvice}
-                    shouldAddNewAdvice = {this.shouldAddNewAdvice}
+            <div className={"feedContainer"}>
+                <SidePane
+                    isSidePaneHidden = {this.props.isSidePaneHidden}
+                    hideSidePane = {this.props.hideSidePane}
+                    showSidePane = {this.props.showSidePane}
                 />
-            }
+                <div className={sph}>
+                    AllFeed component
+                    <NewAdvice 
+                        addNewAdvice={this.addNewAdvice}
+                        shouldAddNewAdvice = {this.shouldAddNewAdvice}
+                    />
+                    <div className="categoryLabel">
+                        {label}
+                    </div>
+                    {advices}
+                    {this.props.isShowingPostPopup 
+                        && <PostPopup
+                            closePostPopup={this.props.closePostPopup}
+                            addNewAdvice={this.addNewAdvice}
+                            shouldAddNewAdvice = { //(x)=>{true}
+                                                    this.shouldAddNewAdvice
+                                                }
+                        />
+                    }
+                </div>
             </div>
             
         )

@@ -28,7 +28,7 @@ class PostPopup extends Component {
                     thisIsThePopupContainer
                 </div>
                 <div className="formContainer">
-                    cant_click_here!
+                    input your new advice.
                     <NewAdvice 
                         addNewAdvice={this.props.addNewAdvice}
                         shouldAddNewAdvice = {this.props.shouldAddNewAdvice}

@@ -33,6 +33,10 @@ class SingleCard extends Component {
                 {"creatorId: " + this.props.creator_id}
                 <br/>
                 {"category: " + this.props.category}
+                <br/>
+                {"date: " + this.props.timeStamp}
+                <br/>
+                {/* ADD LIKE AND DISLIKE BUTTON HERE */}
             </div>
         )
     }

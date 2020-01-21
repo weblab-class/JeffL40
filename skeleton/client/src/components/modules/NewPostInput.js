@@ -150,28 +150,52 @@ class ThreePostInput extends Component {
       return (
         <div className="u-flex">
             <form className="threeContainer centerStuff">
-                <input
+                {/* <input
                     type="text"
                     placeholder={this.props.defaultText0}
                     value={this.state.value0}
                     onChange={this.handleChange0}
                     className="adviceInput"
-                />
-                <input
+                /> */}
+                <textarea
+                    type="text"
+                    placeholder={this.props.defaultText0}
+                    value={this.state.value0}
+                    onChange={this.handleChange0}
+                    className="adviceInput"
+                >
+                </textarea>
+                {/* <input
                     type="text"
                     placeholder={this.props.defaultText1}
                     value={this.state.value1}
                     onChange={this.handleChange1}
                     className="storyInput"
-                />
+                /> */}
+                <textarea
+                    type="text"
+                    placeholder={this.props.defaultText1}
+                    value={this.state.value1}
+                    onChange={this.handleChange1}
+                    className="storyInput"
+                >
+                </textarea>
                 <div className="catSubmitGroup">
-                  <input
+                  {/* <input
                       type="text"
                       placeholder={this.props.defaultText2}
                       value={this.state.value2}
                       onChange={this.handleChange2}
                       className="categoryInput"
-                  />
+                  /> */}
+                  <textarea
+                      type="text"
+                      placeholder={this.props.defaultText2}
+                      value={this.state.value2}
+                      onChange={this.handleChange2}
+                      className="categoryInput"
+                  >
+                  </textarea>
                   <button
                       type="submit"
                       className="postSubmitButton u-pointer"
@@ -208,7 +232,7 @@ class NewAdvice extends Component {
         return <ThreePostInput 
                     defaultText0="input your advice here ..."
                     defaultText1="augment your advice with a story ..."
-                    defaultText2="category label ..."
+                    defaultText2="finally, label your advice with a category"
                     onSubmit={this.addAdvice}
                     closePostPopup={this.props.closePostPopup}
                     />

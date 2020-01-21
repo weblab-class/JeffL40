@@ -25,18 +25,16 @@ class LoginPage extends Component {
   render() {
 
       return (
-          <div className="u-textCenter">
-            <div className="spacer0"></div>
-            <div className="EnlightenTag u-inlineBlock">Enlighten</div>
-            <div className="spacer1"></div>
-            <div className="appDescription u-inlineBlock">It’s never fun to learn things the hard way.
+          <div className="u-textCenter loginPageContainer">
+            <div className="EnlightenTag">Enlighten</div>
+            <div className="appDescription">It’s never fun to learn things the hard way.
                 <br></br>Share advice with others to enlighten and be enlightened.</div>
-            <div className="spacer2"></div>
               <GoogleLogin
                 clientId={GOOGLE_CLIENT_ID}
                 buttonText="Login"
                 onSuccess={this.props.handleLogin}
                 onFailure={(err) => console.log(err)}
+                className="loginButton"
               />
           </div>
       )

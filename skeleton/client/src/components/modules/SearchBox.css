@@ -52,6 +52,9 @@
     color:white;
     font-size:32px;
 }
+.categoryLink:hover{
+    background-color: #727272;
+}
 .catDescription{
     color:white;
     margin-top:8px;

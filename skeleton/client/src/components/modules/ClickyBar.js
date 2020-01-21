@@ -24,6 +24,7 @@ class ClickyBar extends Component {
                     className="theBarCollapsed"
                     onClick={this.props.showSidePane}
                     >
+                    &gt;&gt;
                 </div>
             )
         }
@@ -33,6 +34,7 @@ class ClickyBar extends Component {
                     className="theBarExpanded"
                     onClick={this.props.hideSidePane}
                     >
+                    &lt;&lt;
                 </div>
             )
         }

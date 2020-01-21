@@ -81,13 +81,13 @@ class SearchResults extends Component {
             let x = "/user/";
             usersToDisplay = this.state.gotUsers
                       .map((usrObj) => (
-                        <a href= {x + usrObj._id} key={`userResult_${usrObj._id}`}>
+                        <Link to= {x + usrObj._id} key={`userResult_${usrObj._id}`}>
                             singleUser
                             <br/>
                             name: {usrObj.name}
                             <br/>
                             id: {usrObj._id}
-                        </a>
+                        </Link>
         ));
         } else {
             usersToDisplay = <div>No users found.</div>;
@@ -98,13 +98,13 @@ class SearchResults extends Component {
             let x = "/category/";
             catsToDisplay = this.state.gotCategories
                       .map((catObj) => (
-                        <a href= {x + catObj.categoryName} key={`catResult_${catObj._id}`}>
+                        <Link to= {x + catObj.categoryName} key={`catResult_${catObj._id}`}>
                             singleCategory
                             <br/>
                             name: {catObj.categoryName}
                             <br/>
                             id: {catObj._id}
-                        </a>
+                        </Link>
         ));
         } else {
             catsToDisplay = <div>No categories found.</div>;

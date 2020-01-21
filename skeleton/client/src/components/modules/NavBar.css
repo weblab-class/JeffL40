@@ -21,6 +21,9 @@
     color: #FFFFFF;
     margin-top: 16px;
 }
+.navbarLink:hover{
+    opacity:70%;
+}
 .logoutContainer{
     display:flex;
     vertical-align:center;

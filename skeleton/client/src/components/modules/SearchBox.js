@@ -25,11 +25,12 @@ class SearchBox extends Component {
                     Search
                     <SearchInput 
                         defaultText="searchHere"
-                        onSubmit = {this.props.rerenderBrowseContainer}
                     />
                 </div>
                 <div className="commonCategories">
-                    COMMONCATS_HERE_TEST
+                    <div className="catDescription">  
+                        common categories
+                    </div>
                     <Link to="/category/general" className="categoryLink linkOne">
                         general
                     </Link>

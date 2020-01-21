@@ -34,9 +34,105 @@
   color: var(--white);
   background-color: var(--primary);
 }
-.textInput{
-    width: 100px;
+
+.searchTextInput{
+    width:224px;
+    height:48px;
+    margin-top:16px;
+    background-color: #047A9F;
+    color: white;
+    border-radius: 4px;
+    font-size: 36px;
+    border:none;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.searchTextInput::placeholder{
+  color: rgba(255, 255, 255, 0.76);
+  opacity: 75%;
+}
+.searchButton{
+    display: flex;
+    width:64px;
+    height:64px;
+    margin-top:8px;
+    margin-left:4px;
+    opacity: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(5, 194, 194);
+    color: rgb(155, 172, 182);
+    text-decoration: none;
+    border-radius: 16px;
+}
+.searchButton:hover{
+  background-color: rgb(32, 112, 112);
 }
 .separator{
     margin-top:8px;
+}
+.centerStuff{
+  align-items: center;
+}
+.threeContainer{
+  display:flex;
+  flex-direction: column;
+}
+.catSubmitGroup{
+  display: flex;
+  flex-direction: row;
+  margin-top:32px;
+}
+.adviceInput{
+  margin-top:16px;
+  width:536px;
+  height: 104px;
+  background-color: #C8EFEF;
+  color: #005C90;
+  border:none;
+  font-size: 24px;
+}
+.adviceInput::placeholder{
+  color: #005C90;
+  opacity: 75%;
+  font-size: 36px;
+}
+.storyInput{
+  width:536px;
+  height: 280px;
+  margin-top:32px;
+  background-color: #C8EFEF;
+  color: #005C90;
+  border:none;
+  font-size:18px;
+}
+.storyInput::placeholder{
+  color: #005C90;
+  opacity: 65%;
+  font-size: 28px;
+}
+.categoryInput{
+  width: 316px;
+  height: 64px;
+  background-color: #C8EFEF;
+  color: #005C90;
+  border:none;
+  font-size:36px;
+}
+.categoryInput::placeholder{
+  color: #005C90;
+  opacity: 80%;
+  font-size: 24px;
+}
+.postSubmitButton{
+  width: 188px;
+  height: 64px;
+  margin-left:32px;
+  background-color: #366173;
+  color:white;
+  border:none;
+  font-size: 36px;
+}
+.postSubmitButton:hover{
+  opacity:65%;
 }

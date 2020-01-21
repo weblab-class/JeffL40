@@ -34,6 +34,23 @@ class AllFeed extends Component {
         });
         });
     }
+    componentDidUpdate(prevProps){
+        if( 
+            this.props.idQueriedUser !== prevProps.idQueriedUser
+            || this.props.categoryName !== prevProps.categoryName 
+        ){
+        const query = { idQueriedUser: this.props.idQueriedUser
+            , categoryName: this.props.categoryName};
+        console.log("allFeed received: " , query);
+        console.log('query.idQueriedUser === "null"', query.idQueriedUser === "null");
+        get("/api/advice", query).then((adviceObjs) => {
+        let reversedAdviceObjs = adviceObjs.reverse();
+        this.setState( {adviceList: reversedAdviceObjs});
+        // reversedAdviceObjs.map((adviceObj) => {
+        //     this.setState({ adviceList: this.state.adviceList.concat([adviceObj]) });
+        // });
+        });};
+    }
     addNewAdvice = ( adviceObject) => {
         this.setState({
             adviceList: [ adviceObject].concat(this.state.adviceList),
@@ -92,11 +109,6 @@ class AllFeed extends Component {
                     showSidePane = {this.props.showSidePane}
                 />
                 <div className={sph}>
-                    AllFeed component
-                    <NewAdvice 
-                        addNewAdvice={this.addNewAdvice}
-                        shouldAddNewAdvice = {this.shouldAddNewAdvice}
-                    />
                     <div className="categoryLabel">
                         {label}
                     </div>

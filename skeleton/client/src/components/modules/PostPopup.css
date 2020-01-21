@@ -8,9 +8,12 @@
     left:0;
 }
 .formContainer{
-    --width: 400px;
-    --height: 400px;
-    background-color: turquoise;
+    display:flex;
+    flex-direction: column;
+    --width: 600px;
+    --height: 592px;
+    /* border-radius: 16px; */
+    background-color: rgb(178, 233, 227);
     position: fixed;
     top:50%;
     left:50%;
@@ -19,4 +22,29 @@
     height: var(--height);
     margin-left: calc( -0.5 * var(--width));
     margin-top: calc( -0.5 * var(--height));
+}
+.cancelButton{
+    display:flex;
+    height:32px;
+    margin-left: auto;
+    padding-left: 4px;
+    align-items: center;
+    padding-right: 4px;
+    background-color:#ba0000;
+    color: white;
+    border:none;
+    font-size: 28px;
+    justify-content: center;
+}
+.cancelButton:hover{
+    background-color: #6d0000;
+}
+.xMark{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    stroke:1px white solid;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left:4px;
 }

@@ -25,10 +25,12 @@ class PostPopup extends Component {
         return(
             <>
                 <div className="popupContainer" onClick={this.props.closePostPopup}>
-                    thisIsThePopupContainer
+                    
                 </div>
                 <div className="formContainer">
-                    input your new advice.
+                    <button className="cancelButton" onClick={this.props.closePostPopup}>
+                        cancel<div className="xMark">&#x24E7;</div>
+                    </button>
                     <NewAdvice 
                         addNewAdvice={this.props.addNewAdvice}
                         shouldAddNewAdvice = {this.props.shouldAddNewAdvice}

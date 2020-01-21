@@ -87,13 +87,16 @@ class SearchInput extends Component {
             placeholder={this.props.defaultText}
             value={this.state.value}
             onChange={this.handleChange}
-            className="textInput"
+            className="searchTextInput"
           />
           {/* <a href={linkDest}>
               GO!
           </a> */}
-          <Link to={linkDest} onClick={this.props.onSubmit}>
-              GO!
+          <Link to={linkDest} 
+                onClick={this.props.onSubmit}
+                className="searchButton"
+                >
+              &#x1F50E;
           </Link>
         </div>
       );
@@ -146,39 +149,38 @@ class ThreePostInput extends Component {
     render() {
       return (
         <div className="u-flex">
-            <form>
+            <form className="threeContainer centerStuff">
                 <input
                     type="text"
                     placeholder={this.props.defaultText0}
                     value={this.state.value0}
                     onChange={this.handleChange0}
-                    className="textInput"
+                    className="adviceInput"
                 />
-                <br/>
                 <input
                     type="text"
                     placeholder={this.props.defaultText1}
                     value={this.state.value1}
                     onChange={this.handleChange1}
-                    className="textInput"
+                    className="storyInput"
                 />
-                <br/>
-                <input
-                    type="text"
-                    placeholder={this.props.defaultText2}
-                    value={this.state.value2}
-                    onChange={this.handleChange2}
-                    className="textInput"
-                />
-                <br/>
-                <button
-                    type="submit"
-                    className="submitButton u-pointer"
-                    value="Submit"
-                    onClick={this.handleSubmit}
-                >
-                    Submit
-                </button>
+                <div className="catSubmitGroup">
+                  <input
+                      type="text"
+                      placeholder={this.props.defaultText2}
+                      value={this.state.value2}
+                      onChange={this.handleChange2}
+                      className="categoryInput"
+                  />
+                  <button
+                      type="submit"
+                      className="postSubmitButton u-pointer"
+                      value="Submit"
+                      onClick={this.handleSubmit}
+                  >
+                      Submit
+                  </button>
+                </div>
             </form>
         </div>
       );
@@ -204,9 +206,9 @@ class NewAdvice extends Component {
     }
     render() {
         return <ThreePostInput 
-                    defaultText0="New Advice"
-                    defaultText1="storyGoesHere"
-                    defaultText2="categoryGoesHere"
+                    defaultText0="input your advice here ..."
+                    defaultText1="augment your advice with a story ..."
+                    defaultText2="category label ..."
                     onSubmit={this.addAdvice}
                     closePostPopup={this.props.closePostPopup}
                     />

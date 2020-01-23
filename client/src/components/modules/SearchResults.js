@@ -26,21 +26,13 @@ class SearchResults extends Component {
     const query = { target: this.props.ambiguousQuery};
     get( "/api/usersWithName", query).then(
         (foundUsers) =>{
-          console.log("newSrchRes foundUsers: ", foundUsers);
-            foundUsers.map((oneUser) => {
-                this.setState({ gotUsers: this.state.gotUsers.concat([oneUser]) });
-          });
-          console.log("newSearchResults Users: ", this.state.gotUsers);
+                this.setState({ gotUsers: foundUsers });
         }
     );
     get( "/api/categoriesWithSubstring", query).then(
         (foundCategories) =>{
-            console.log("newSrchRes foundCats: ", foundCategories);
-            foundCategories.map((oneCategory) => {
                 this.setState(
-                    { gotCategories: this.state.gotCategories.concat([oneCategory]) });
-          });
-          console.log("newSearchresults Cats: ", this.state.gotCategories);
+                    { gotCategories: foundCategories });
         }
     );
   }
@@ -50,21 +42,13 @@ class SearchResults extends Component {
         const query = { target: this.props.ambiguousQuery};
         get( "/api/usersWithName", query).then(
             (foundUsers) =>{
-            console.log("newSrchRes foundUsers: ", foundUsers);
-                foundUsers.map((oneUser) => {
                     this.setState({ gotUsers: foundUsers });
-            });
-            console.log("newSearchResults Users: ", this.state.gotUsers);
             }
         );
         get( "/api/categoriesWithSubstring", query).then(
             (foundCategories) =>{
-                console.log("newSrchRes foundCats: ", foundCategories);
-                foundCategories.map((oneCategory) => {
                     this.setState(
                         { gotCategories: foundCategories });
-            });
-            console.log("newSearchresults Cats: ", this.state.gotCategories);
             }
     );}
   }

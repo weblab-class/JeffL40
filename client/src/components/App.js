@@ -22,41 +22,43 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //auxilliaryState : -1,
       userId: undefined,
-      userName: undefined,
-      userLikes: 0,
-      userDislikes: 0,
-      userAdvices: 0,
+      // userName: undefined,
+      // userHasLiked: [],
+      // userLikes: 0,
+      // userDislikes: 0,
+      // userAdvices: 0,
       isShowingPostPopup: false,
     };
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        // they are registed in the database, and currently logged in.
-        this.setState({ 
-          userId: user._id,
-          userName: user.name,
-          userLikes: user.numLikes,
-          userDislikes: user.numDislikes,
-          userAdvices: user.numAdvices,
-        });
+    
+    get("/api/whoami")
+    .then(
+      (user) => {
+        if (user._id) {
+          this.setState({
+            userId: user._id
+          })
+        }
       }
-    });
+    )
+   
     document.body.style.backgroundColor="white";
   }
-
-  // changeAuxilliaryState = () => {
-  //   this.setState({ auxilliaryState: -this.state.auxilliaryState});
-  // }
 
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({
+         userId: user._id,
+         userName: user.name,
+         userLikes: user.numLikes,
+         userAdvices: user.numAdvices,
+         userHasLiked: user.hasLiked,
+         });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -75,6 +77,8 @@ class App extends Component {
   };
 
   render() {
+    console.log("appjsreceivererd", this.state.userHasLiked)
+    console.log("appjs user", this.state.userId)
     if (
       //true||
       this.state.userId){
@@ -85,40 +89,18 @@ class App extends Component {
             openPostPopup = {this.openPostPopup}
             userId={this.state.userId}
           />
-            <BrowseContainer
-              userId={this.state.userId}
-              userName={this.state.userName}
-              userLikes={this.state.userLikes}
-              userDislikes={this.state.userDislikes}
-              userAdvices={this.state.userAdvices}
-              isShowingPostPopup = {this.state.isShowingPostPopup}
-              closePostPopup={this.closePostPopup}
-            />
+          <BrowseContainer
+            userId={this.state.userId}
+            // userHasLiked={this.state.userHasLiked}
+            // userName={this.state.userName}
+            // userLikes={this.state.userLikes}
+            // userAdvices={this.state.userAdvices}
+            isShowingPostPopup = {this.state.isShowingPostPopup}
+            closePostPopup={this.closePostPopup}
+          />
         </>
       )
     }
-    /**
-     {this.state.isShowingPostPopup 
-            && <PostPopup
-                  closePostPopup={this.closePostPopup}
-              />
-      }
-     */
-    /**
-          <NavBar
-            handleLogout={this.handleLogout}
-          />
-     */
-    /**
-          <Router>
-            <BrowseContainer 
-              path="/" 
-              userId={this.state.userId} 
-            />
-            <Profile path="/profile/:userId" />
-            <NotFound default />
-          </Router>
-     */
     else {
       return(
         <>

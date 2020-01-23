@@ -18,7 +18,7 @@ class Profile extends Component {
     this.state = {
       nameOfProfile : "???",
       numberOfLikes : 0,
-      numberOfDislikes: 0,
+      // numberOfDislikes: 0,
       numberOfAdvices: 0,
     };
   }
@@ -32,7 +32,7 @@ class Profile extends Component {
           {
             nameOfProfile: foundProfileUser.name,
             numberOfLikes: foundProfileUser.numLikes,
-            numberOfDislikes: foundProfileUser.numDislikes,
+            // numberOfDislikes: foundProfileUser.numDislikes,
             numberOfAdvices: foundProfileUser.numAdvices,
           }
         )
@@ -57,8 +57,8 @@ class Profile extends Component {
           <br/>
           likes: {this.state.numberOfLikes}
           <br/>
-          dislikes: {this.state.numberOfDislikes}
-          <br/>
+          {/*dislikes: {this.state.numberOfDislikes}
+          <br/> */}
           number of advices: {this.state.numberOfAdvices}
           <br/>
           {this.props.isShowingPostPopup 

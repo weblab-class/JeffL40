@@ -27,6 +27,7 @@ class AllFeed extends Component {
                      , categoryName: this.props.categoryName};
         console.log("allFeed received: " , query);
         console.log('query.idQueriedUser === "null"', query.idQueriedUser === "null");
+        
         get("/api/advice", query).then((adviceObjs) => {
             let reversedAdviceObjs = adviceObjs.reverse();
             reversedAdviceObjs.map((adviceObj) => {
@@ -74,9 +75,10 @@ class AllFeed extends Component {
         if (hasAdvice) {
             advices = this.state.adviceList
                       .filter(advObj => this.shouldAddNewAdvice(advObj))
-                      .map((advObj) => (
+                      .map((advObj) => (       
                         <SingleCard
                             key={`Card_${advObj._id}`}
+                            userHasLiked={this.props.userHasLiked}
                             adviceId={advObj._id}
                             creator_name={advObj.creator_name}
                             creator_id={advObj.creator_id}
@@ -84,9 +86,11 @@ class AllFeed extends Component {
                             adviceStory={advObj.adviceStory}
                             category={advObj.category}
                             timeStamp={advObj.timeStamp}
+                            numLikes={advObj.numLikes}
                             userId={this.props.userId}
                         />
-        ));
+            )
+        );
         } else {
             advices = <div>No advices!</div>;
         }

@@ -10,6 +10,8 @@ import SearchResults from "./SearchResults.js";
 
 import "../../utilities.css";
 import "./BrowseContainer.css";
+import { get, post } from "../../utilities";
+//import { get } from "mongoose";
 
 
 // This identifies your web application to Google's authentication service
@@ -20,6 +22,10 @@ class BrowseContainer extends Component {
         super(props);
         this.state={
             isSidePaneHidden: false,
+            userName: undefined,
+            userHasLiked: [],
+            userLikes: 0,
+            userAdvices: 0,
         }
     }
     hideSidePane = () => {
@@ -29,12 +35,22 @@ class BrowseContainer extends Component {
         this.setState( {isSidePaneHidden: false});
     }
     componentDidMount(){
-
+        get("/api/getProfileById", {idProfile: this.props.userId}).then(
+            (foundUser) =>{
+                this.setState({
+                    userName: foundUser.name,
+                    userHasLiked: foundUser.hasLiked,
+                    userLikes: foundUser.numLikes,
+                    userAdvices: foundUser.numAdvices,
+                })
+            }
+        )
     }
     // componentDidUpdate(prevProps){
 
     // }
     render(){
+        console.log("this.props.userHasLiked from BRcontain", this.props.userHasLiked);
         return(
             <div className="container">
                 {/* <SidePane
@@ -48,15 +64,17 @@ class BrowseContainer extends Component {
                         path = "/"
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         userId = {this.props.userId}
+                        userHasLiked={this.state.userHasLiked}
                         categoryName = ""
                         idQueriedUser = ""
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/user"
+                        userHasLiked={this.state.userHasLiked}
                         idQueriedUser = ""
                         categoryName = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
@@ -64,20 +82,22 @@ class BrowseContainer extends Component {
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/user/:idQueriedUser"
+                        userHasLiked={this.state.userHasLiked}
                         categoryName = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/category/"
+                        userHasLiked={this.state.userHasLiked}
                         categoryName = ""
                         idQueriedUser = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
@@ -85,45 +105,49 @@ class BrowseContainer extends Component {
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <AllFeed
                         path = "/category/:categoryName"
+                        userHasLiked={this.state.userHasLiked}
                         idQueriedUser = ""
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <Profile
                         path = "/profile/:idProfile"
+                        userHasLiked={this.state.userHasLiked}
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup = {this.props.closePostPopup}
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <SearchResults
                         path = "/searchResults/:ambiguousQuery"
+                        userHasLiked={this.state.userHasLiked}
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup = {this.props.closePostPopup}
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <SearchResults
                         path = "/searchResults/"
+                        userHasLiked={this.state.userHasLiked}
                         ambiguousQuery = ""
                         userId = {this.props.userId}
                         isShowingPostPopup = {this.props.isShowingPostPopup}
                         closePostPopup = {this.props.closePostPopup}
                         isSidePaneHidden={this.state.isSidePaneHidden}
                         hideSidePane = {this.hideSidePane}
-                    showSidePane = {this.showSidePane}
+                        showSidePane = {this.showSidePane}
                     />
                     <NotFound default />
                 </Router>

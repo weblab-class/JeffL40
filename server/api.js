@@ -30,7 +30,7 @@ router.get("/whoami", (req, res) => {
     // not logged in
     return res.send({});
   }
-
+  console.log("User whoami", req.user)
   res.send(req.user);
 });
 
@@ -142,21 +142,68 @@ router.get( "/usersWithName"
   }
 );
 
-router.post("/like"
+router.post("/like",auth.ensureLoggedIn, (req, res) => {
+            console.log("like post request issued");
+            Advice.findById( req.body.adviceId).then(
+              ( foundAdvice) => {
+                foundAdvice.numLikes = foundAdvice.numLikes + 1;
+                foundAdvice.save();
+              }
+            )
+            
+            User.findById(req.body.creator_id).then(
+              (foundCreator => {
+                foundCreator.numLikes = foundCreator.numLikes + 1;
+                foundCreator.save();
+              })
+            );
+            
+            User.findById(req.body.userId).then(
+              (foundLiker) => {
+                console.log("foundLiker haslikedB4: ", foundLiker.hasLiked);
+                foundLiker.hasLiked = foundLiker.hasLiked.concat([req.body.adviceId]);
+                console.log("foundLiker hasLikedAFTR", foundLiker.hasLiked);
+                foundLiker.save().then(
+                  (liker) => console.log("Found updated liker", liker)
+                );
+              }
+            )    
+          }
+);
+
+router.post("/undo"
            // , auth.ensureLoggedIn
           , (req, res) => {
-            User.findById(req.body.creator_id)
-            .then(
-              (foundCreator) => {
-                foundCreator.numLikes = foundCreator.numLikes + 1
+            Advice.findById( req.body.adviceId).then(
+              ( foundAdvice) => {
+                foundAdvice.numLikes = foundAdvice.numLikes - 1;
+                foundAdvice.save();
+              }
+            )
+            
+            User.findById(req.body.creator_id).then(
+              (foundCreator => {
+                foundCreator.numLikes = foundCreator.numLikes - 1;
+                foundCreator.save();
+              })
+            );
+            
+            User.findById(req.body.userId).then(
+              (foundLiker) => {
+                console.log("foundLiker has Liked", foundLiker.hasLiked);
+                console.log("remove this Id", req.body.adviceId);
+                let x = foundLiker.hasLiked.filter((adviceId) => {
+                  console.log("did match", adviceId.toString() !== req.body.adviceId.toString());
+                  return adviceId.toString() !== req.body.adviceId.toString();
+                });
+                console.log("filtered", x);
+                foundLiker.hasLiked = x;
+                console.log("foundLiker after filter", foundLiker.hasLiked);
+                foundLiker.save();
               }
             );
-            Advice.update( //FIXXXX
-              {_id: req.body.adviceId},
-              { $push: { likedBy: req.user._id}}
-            );
           }
-)
+);
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -9,9 +9,7 @@ const AdviceSchema = new mongoose.Schema({
   adviceStory: String,
   category: String,
   timeStamp: {type: Date, default: Date.now},
-  likedOrDislikedBy: [ObjectId],
-  likedBy: [ObjectId],
-  dislikedBy: [ObjectId],
+  numLikes: {type:Number, default: 0},
 });
 
 // compile model from schema

@@ -36,7 +36,7 @@ const socket = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL = process.env.mongoConnectionURL;
+const mongoConnectionURL = "mongodb+srv://boxofuselessstuff:Hydr31g0n@cluster0-mmbuz.mongodb.net/test?retryWrites=true&w=majority"//process.env.mongoConnectionURL;
 // TODO change database name to the name you chose
 const databaseName = "Enlighten";
 
@@ -60,7 +60,7 @@ app.use(express.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: process.env.secret,
+    secret: "session-secret",//process.env.secret,
     resave: false,
     saveUninitialized: false,
   })

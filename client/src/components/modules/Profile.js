@@ -41,9 +41,9 @@ class Profile extends Component {
   }
 
   render() {
-    let sph = "sidePaneExpanded";
+    let sph = "sidePaneExpandedProfile";
     if(this.props.isSidePaneHidden){
-        sph = "sidePaneCollapsed";
+        sph = "sidePaneCollapsedProfile";
     }
     return(
       <div className={"feedContainer"}>

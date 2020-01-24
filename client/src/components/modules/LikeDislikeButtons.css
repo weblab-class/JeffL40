@@ -1,0 +1,15 @@
+.enlightened{
+    width:128px;
+    margin-left: auto;
+    background-color: #32C7AC;
+    border-radius: 0px;
+    color: #FBFF38;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    height:100%;
+    font-size:24px;
+}
+.enlightened:hover{
+    opacity: 75%;
+}

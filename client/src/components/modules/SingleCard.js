@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import LikeButton from "./LikeDislikeButtons.js";
+import StoryButton from "./StoryButton.js";
 
 import "../../utilities.css";
 import "./SingleCard.css";
@@ -17,6 +18,7 @@ class SingleCard extends Component {
             badComments : [],
             numLikes:0,
             initLikedState:-1,
+            showStory:false,
         }
     }
     componentDidMount(){
@@ -52,40 +54,66 @@ class SingleCard extends Component {
             numLikes: this.state.numLikes - 1
         });
     }
+    displayStory=()=>{
+        this.setState({showStory:true});
+    }
+    hideStory=()=>{
+        this.setState({showStory:false});
+    }
     render(){
 
         let inLiked= this.props.userHasLiked.includes(
             this.props.adviceId
         ) ? 1 : 0;
         
-      
         return(
             <div className="cardContainer">
-                {"A single card"}
-                <br/>
-                {"advice: " + this.props.advice}
-                <br/>
-                {"adviceStory: " + this.props.adviceStory}
-                <br/>
-                {"creator: " + this.props.creator_name}
-                <br/>
-                {"creatorId: " + this.props.creator_id}
-                <br/>
-                {"category: " + this.props.category}
-                <br/>
-                {"date: " + this.props.timeStamp}
-                <br/>
-                {"adviceId: " + this.props.adviceId}
-                <br/>
-                {"numLikes: " + this.state.numLikes}
-                <br/>
-                <LikeButton
-                    adviceId = {this.props.adviceId}
-                    creator_id = {this.props.creator_id}
-                    userId = {this.props.userId}
-                    initLikedState = {inLiked}
-                    incrementShownLikes = {this.incrementShownLikes}
-                    decrementShownLikes = {this.decrementShownLikes}
+                <div className="topLabel">
+                    <div className="catLabel">
+                        {this.props.category}
+                    </div>
+                    <div className="authorLabel">
+                        {this.props.creator_name}
+                    </div>
+                </div>
+                <div className="bodyContainer">
+                    <div className="content">
+                        {"A single card"}
+                        <br/>
+                        {"advice: " + this.props.advice}
+                        <br/>
+                        {"adviceStory: " + this.props.adviceStory}
+                        <br/>
+                        {"creator: " + this.props.creator_name}
+                        <br/>
+                        {"creatorId: " + this.props.creator_id}
+                        <br/>
+                        {"category: " + this.props.category}
+                        <br/>
+                        {"date: " + this.props.timeStamp}
+                        <br/>
+                        {"adviceId: " + this.props.adviceId}
+                        <br/>
+                        {"numLikes: " + this.state.numLikes}
+                        <br/>
+                        {(this.state.showStory) ? <div className="adviceStory">
+                        {this.props.adviceStory}
+                        </div>:<div></div>}
+                    </div>
+                    <LikeButton
+                        adviceId = {this.props.adviceId}
+                        creator_id = {this.props.creator_id}
+                        userId = {this.props.userId}
+                        initLikedState = {inLiked}
+                        incrementShownLikes = {this.incrementShownLikes}
+                        decrementShownLikes = {this.decrementShownLikes}
+                    />
+                </div>
+                <StoryButton
+                    adviceStory={this.props.adviceStory}
+                    showStory={this.state.showStory}
+                    displayStory={this.displayStory}
+                    hideStory={this.hideStory}
                 />
             </div>
         )

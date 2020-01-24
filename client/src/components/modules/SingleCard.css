@@ -1,5 +1,54 @@
 .cardContainer{
     display:flex;
-    border: 1px solid green;
     justify-content: center;
+    width:586px;
+    min-height: 216px;
+    border-radius:8px;
+    flex-direction: column;
+    background-color: #967EB5;
+    color:white;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+.topLabel{
+    display:flex;
+    flex-direction: row;
+    border-radius: 8px 8px 0px 0px;
+    width:100%;
+    height:36px;
+    background-color: #57446D;
+}
+.catLabel{
+    display:flex;
+    font-size:22px;
+    font-weight:bold;
+    text-align: center;
+    margin-left: 4px;
+    align-items: center;
+    color:#E9CEF2;
+}
+.authorLabel{
+    display: flex;
+    margin-right: 4px;
+    margin-left: auto;
+    color: white;
+    font-size: 22px;
+    align-items: center;
+    text-align: center;
+}
+.bodyContainer{
+    display: flex;
+    flex-direction: row;
+}
+.content{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: center;
+    font-size: 24px;
+    padding-left: 4px;
+}
+.adviceStory{
+    text-align: left;
 }

@@ -1,25 +1,30 @@
 .sidePaneCollapsed{
     display:flex;
     flex-direction: column;
-    border: black 1px solid;
     width:1488px;
     width: 100%;
     margin-left:32px;
     justify-content: center;
+    align-items: center;
+    background-color: #3B0060;;
 }
 .sidePaneExpanded{
     display:flex;
     flex-direction: column;
-    border: black 1px solid;
     width:1170px;
     width: 100%;
     margin-left:350px;
     justify-content: center;
+    align-items: center;
+    background-color: #3B0060;;
 }
-.categoryLabel{
+.categoryLabelTop{
     display:flex;
     justify-content: center;
-    border: red 1px solid;
+    margin-top: 28px;
+    font-size: 64px;
+    color:white;
+    border:none;
 }
 
 .feedContainer {

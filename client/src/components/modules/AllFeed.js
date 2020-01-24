@@ -98,8 +98,11 @@ class AllFeed extends Component {
         if (this.props.idQueriedUser !== "") {
             label = "user: " + this.props.idQueriedUser;
         }
-        else {
+        else if(this.props.categoryName!==""){
             label = "category: " + this.props.categoryName;
+        }
+        else{
+            label="all advice";
         }
         let sph = "sidePaneExpanded";
         if(this.props.isSidePaneHidden){
@@ -113,7 +116,7 @@ class AllFeed extends Component {
                     showSidePane = {this.props.showSidePane}
                 />
                 <div className={sph}>
-                    <div className="categoryLabel">
+                    <div className="categoryLabelTop">
                         {label}
                     </div>
                     {advices}

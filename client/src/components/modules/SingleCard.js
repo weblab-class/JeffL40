@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import LikeButton from "./LikeDislikeButtons.js";
 import StoryButton from "./StoryButton.js";
+import RatingForm from "./RatingForm.js";
 
 import "../../utilities.css";
 import "./SingleCard.css";
@@ -19,10 +20,15 @@ class SingleCard extends Component {
             numLikes:0,
             initLikedState:-1,
             showStory:false,
+            numRatings:0,
+            totalRatings:0,
         }
     }
     componentDidMount(){
-        this.setState({numLikes: this.props.numLikes});
+        this.setState({numLikes: this.props.numLikes,
+                       numRatings: this.props.numRatings,
+                       totalRatings: this.props.totalRatings,
+        });
         
         //console.log("userHasLiked", this.props.userHasLiked);
         //console.log("adviceId: ", this.props.adviceId);
@@ -53,6 +59,15 @@ class SingleCard extends Component {
         this.setState({
             numLikes: this.state.numLikes - 1
         });
+    }
+    updateRatings = (deltaTotalRatings, deltaNumRatings) =>{
+        console.log("updateRatings called");
+        console.log("totalRatings before", this.state.totalRatings)
+        this.setState({
+            numRatings: this.state.numRatings + deltaNumRatings,
+            totalRatings: this.state.totalRatings + deltaTotalRatings,
+        });
+        console.log("totalRatings after", this.state.totalRatings)
     }
     displayStory=()=>{
         this.setState({showStory:true});
@@ -96,6 +111,16 @@ class SingleCard extends Component {
                         <br/>
                         {"numLikes: " + this.state.numLikes}
                         <br/>
+                        {"numRatings: " + this.state.numRatings}
+                        <br/>
+                        {"totalRatings: " + this.state.totalRatings}
+                        <br/>
+                        <RatingForm
+                            userId = {this.props.userId}
+                            adviceId = {this.props.adviceId}
+                            creator_id = {this.props.creator_id}
+                            updateRatings = {this.updateRatings}
+                        />
                         {(this.state.showStory) ? <div className="adviceStory">
                         {this.props.adviceStory}
                         </div>:<div></div>}

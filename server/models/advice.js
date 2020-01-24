@@ -10,6 +10,8 @@ const AdviceSchema = new mongoose.Schema({
   category: String,
   timeStamp: {type: Date, default: Date.now},
   numLikes: {type:Number, default: 0},
+  numRatings: {type: Number, default:0},
+  totalRatings: {type: Number, default:0},
 });
 
 // compile model from schema

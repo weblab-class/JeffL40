@@ -7,6 +7,7 @@ import SingleCard from "./SingleCard.js";
 import {NewAdvice} from "./NewPostInput.js";
 import PostPopup from "./PostPopup.js";
 import SidePane from "./SidePane.js";
+import RatingForm from "./RatingForm.js";
 
 import "../../utilities.css";
 import "./AllFeed.css";
@@ -88,6 +89,8 @@ class AllFeed extends Component {
                             timeStamp={advObj.timeStamp}
                             numLikes={advObj.numLikes}
                             userId={this.props.userId}
+                            numRatings = {advObj.numRatings}
+                            totalRatings = {advObj.totalRatings}
                         />
             )
         );

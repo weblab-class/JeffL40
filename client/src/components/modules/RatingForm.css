@@ -1,0 +1,172 @@
+.ratingFormContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #000000;
+    align-items: center;
+    width: 400px;
+    height: 344px;
+    background-color:  #F9F9F9;
+    border: 1px solid #000000;
+}
+.rangeSlider{
+    width:352px;
+    /* width:100%; */
+    -webkit-appearance: none;
+    background: transparent;
+}
+.rangeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 4px solid #727272;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    /* background: #d1d1d1; */
+    opacity:100%;
+    cursor: grab;
+    margin-top: -16px;
+}
+.rangeSlider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+  }
+.rangeSlider:focus {
+    outline:none;
+}
+.rangeSlider::-ms-track{
+    width:352px;
+    cursor:pointer;
+    background: transparent;
+    border-color:transparent;
+    color:transparent;
+}
+.rangeSlider::-webkit-slider-runnable-track{
+    width: 352px;
+    height: 8px;
+    cursor: pointer;
+    /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+    background: #3071a9;
+    border-radius: 8px;
+    border: 1px solid #010101;
+    -webkit-appearance: none;
+    background: linear-gradient(to right,  #940000 0%,#f3e00c 50%,#45fcf7 100%); 
+
+
+}
+.rangeSlider:focus::-webkit-slider-runnable-track {
+    /* background: #367ebd; */
+  }
+.ratingLabel{
+    color:black;
+}
+.instructions{
+    font-size:24px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    color:black;
+    width:75%;
+    margin-top:24px;
+    text-align: center;
+    margin-bottom: 24px;
+    height:64px;
+
+}
+.labelContainer{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    margin-bottom: 2px;
+    height:24px;
+}
+.enlighteningLabel{
+    display: flex;
+    font-size:20px;
+    color:#04BEB9;
+    margin-right:24px;
+    margin-left:auto;
+}
+.badAdviceLabel{
+    display: flex;
+    font-size:20px;
+    color:#940000;
+    margin-left:24px;
+}
+.sliderBox{
+    border:1px rgb(197, 197, 197) solid;
+    border-radius: 8px;
+}
+.undoRatingButton{
+    display: flex;
+    height: 28px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #AE7777;
+    background-color: #f9f9f9;
+    border: none;
+    margin-top:24px;
+}
+.undoRatingButton:hover{
+    color:rgb(126, 86, 86);
+    cursor:pointer;
+}
+.submitRatingButton{
+    display: flex;
+    border:none;
+    font-size: 32px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #FBFF38;
+    width: 75%;
+    height: 54px;
+    background-color: #32C7AC;
+    border-radius: 8px;
+    margin-top:36px;
+}
+.submitRatingButton:hover{
+    background-color: rgb(32, 126, 109);
+    color:rgb(210, 212, 73);
+    cursor:pointer;
+}
+.rangeContainer{
+    height:36px;
+}
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.largeTextModifier {
+    font-size: 24px;
+}
+.midTextModifier {
+    font-size:22px;
+}
+.paramStyle0::-webkit-slider-thumb{border-color:rgb(  calc(148 * .75), calc(0   * .75), calc(0  *.75));           background:rgb(      calc((148 - 255) * (1 - .4) + 255),calc((0   - 255) * (1 - .4) + 255),calc((0   - 255) * (1 - .4) + 255)  );}
+.paramStyle1::-webkit-slider-thumb{border-color:rgb(  calc(158 * .75), calc(22  * .75), calc(1  *.75));            background:rgb(     calc((158 - 255) * (1 - .4) + 255),calc((22  - 255) * (1 - .4) + 255),calc((1   - 255) * (1 - .4) + 255)  );}
+.paramStyle2::-webkit-slider-thumb{border-color:rgb(  calc(167 * .75), calc(45  * .75), calc(2  *.75));            background:rgb(     calc((167 - 255) * (1 - .4) + 255),calc((45  - 255) * (1 - .4) + 255),calc((2   - 255) * (1 - .4) + 255)  );}
+.paramStyle3::-webkit-slider-thumb{border-color:rgb(  calc(177 * .75), calc(67  * .75), calc(4  *.75));            background:rgb(     calc((177 - 255) * (1 - .4) + 255),calc((67  - 255) * (1 - .4) + 255),calc((4   - 255) * (1 - .4) + 255)  );}
+.paramStyle4::-webkit-slider-thumb{border-color:rgb(  calc(186 * .75), calc(90  * .75), calc(5  *.75));            background:rgb(     calc((186 - 255) * (1 - .4) + 255),calc((90  - 255) * (1 - .4) + 255),calc((5   - 255) * (1 - .4) + 255)  );}
+.paramStyle5::-webkit-slider-thumb{border-color:rgb(  calc(196 * .75), calc(112 * .75), calc(6  *.75));             background:rgb(    calc((196 - 255) * (1 - .4) + 255),calc((112 - 255) * (1 - .4) + 255),calc((6   - 255) * (1 - .4) + 255)  );}
+.paramStyle6::-webkit-slider-thumb{border-color:rgb(  calc(205 * .75), calc(134 * .75), calc(7  *.75));             background:rgb(    calc((205 - 255) * (1 - .4) + 255),calc((134 - 255) * (1 - .4) + 255),calc((7   - 255) * (1 - .4) + 255)  );}
+.paramStyle7::-webkit-slider-thumb{border-color:rgb(  calc(215 * .75), calc(157 * .75), calc(8  *.75));             background:rgb(    calc((215 - 255) * (1 - .4) + 255),calc((157 - 255) * (1 - .4) + 255),calc((8   - 255) * (1 - .4) + 255)  );}
+.paramStyle8::-webkit-slider-thumb{border-color:rgb(  calc(224 * .75), calc(179 * .75), calc(10 *.75));              background:rgb(   calc((224 - 255) * (1 - .4) + 255),calc((179 - 255) * (1 - .4) + 255),calc((10  - 255) * (1 - .4) + 255)  );}
+.paramStyle9::-webkit-slider-thumb{border-color:rgb(  calc(234 * .75), calc(202 * .75), calc(11 *.75));              background:rgb(   calc((234 - 255) * (1 - .4) + 255),calc((202 - 255) * (1 - .4) + 255),calc((11  - 255) * (1 - .4) + 255)  );}
+.paramStyle10::-webkit-slider-thumb{border-color:rgb( calc(243 * .75), calc(224 * .75), calc(12 *.75));               background:rgb(  calc((243 - 255) * (1 - .4) + 255),calc((224 - 255) * (1 - .4) + 255),calc((12  - 255) * (1 - .4) + 255)  );}
+.paramStyle11::-webkit-slider-thumb{border-color:rgb( calc(226 * .75), calc(227 * .75), calc(36 *.75));               background:rgb(  calc((226 - 255) * (1 - .4) + 255),calc((227 - 255) * (1 - .4) + 255),calc((36  - 255) * (1 - .4) + 255)  );}
+.paramStyle12::-webkit-slider-thumb{border-color:rgb( calc(210 * .75), calc(230 * .75), calc(57 *.75));               background:rgb(  calc((210 - 255) * (1 - .4) + 255),calc((230 - 255) * (1 - .4) + 255),calc((57  - 255) * (1 - .4) + 255)  );}
+.paramStyle13::-webkit-slider-thumb{border-color:rgb( calc(195 * .75), calc(232 * .75), calc(78 *.75));               background:rgb(  calc((195 - 255) * (1 - .4) + 255),calc((232 - 255) * (1 - .4) + 255),calc((78  - 255) * (1 - .4) + 255)  );}
+.paramStyle14::-webkit-slider-thumb{border-color:rgb( calc(179 * .75), calc(235 * .75), calc(99 *.75));               background:rgb(  calc((179 - 255) * (1 - .4) + 255),calc((235 - 255) * (1 - .4) + 255),calc((99  - 255) * (1 - .4) + 255)  );}
+.paramStyle15::-webkit-slider-thumb{border-color:rgb( calc(163 * .75), calc(237 * .75), calc(120*.75));                background:rgb( calc((163 - 255) * (1 - .4) + 255),calc((237 - 255) * (1 - .4) + 255),calc((120 - 255) * (1 - .4) + 255)  );}
+.paramStyle16::-webkit-slider-thumb{border-color:rgb( calc(148 * .75), calc(240 * .75), calc(142*.75));                background:rgb( calc((148 - 255) * (1 - .4) + 255),calc((240 - 255) * (1 - .4) + 255),calc((142 - 255) * (1 - .4) + 255)  );}
+.paramStyle17::-webkit-slider-thumb{border-color:rgb( calc(132 * .75), calc(242 * .75), calc(163*.75));                background:rgb( calc((132 - 255) * (1 - .4) + 255),calc((242 - 255) * (1 - .4) + 255),calc((163 - 255) * (1 - .4) + 255)  );}
+.paramStyle18::-webkit-slider-thumb{border-color:rgb( calc(116 * .75), calc(245 * .75), calc(184*.75));                background:rgb( calc((116 - 255) * (1 - .4) + 255),calc((245 - 255) * (1 - .4) + 255),calc((184 - 255) * (1 - .4) + 255)  );}
+.paramStyle19::-webkit-slider-thumb{border-color:rgb( calc(100 * .75), calc(247 * .75), calc(205*.75));                background:rgb( calc((100 - 255) * (1 - .4) + 255),calc((247 - 255) * (1 - .4) + 255),calc((205 - 255) * (1 - .4) + 255)  );}
+.paramStyle20::-webkit-slider-thumb{border-color:rgb( calc(85  * .75), calc(250 * .75), calc(226*.75));               background:rgb(  calc(( 85 - 255) * (1 - .4) + 255),calc((250 - 255) * (1 - .4) + 255),calc((226 - 255) * (1 - .4) + 255)  );}
+.paramStyle21::-webkit-slider-thumb{border-color:rgb( calc(69  * .75), calc(252 * .75), calc(247*.75));               background:rgb(  calc(( 69 - 255) * (1 - .4) + 255),calc((252 - 255) * (1 - .4) + 255),calc((247 - 255) * (1 - .4) + 255)  );}
+

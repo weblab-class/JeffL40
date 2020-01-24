@@ -205,6 +205,105 @@ router.post("/undo"
           }
 );
 
+router.post("/submitRating",(req,res)=>{
+    console.log("submit rating api call");
+    Promise.all([
+      User.findById(req.body.userId),
+      User.findById(req.body.creator_id),
+      Advice.findById(req.body.adviceId)
+    ]).then( (allData) =>{
+        let foundAdvice = allData[2];
+        let foundCreator=allData[1];
+        let foundRater=allData[0];
+        foundAdvice.totalRatings = foundAdvice.totalRatings + req.body.rating;
+        foundCreator.totalRatings = foundCreator.totalRatings + req.body.rating;
+        let filteredHasRated = foundRater.hasRated.filter((someTuple) =>{
+            return someTuple.adviceId.toString() === req.body.adviceId.toString();
+          }
+        );
+        let x = filteredHasRated.length === 0;
+        if( x){//foundRater has not rated
+            foundAdvice.numRatings = foundAdvice.numRatings + 1;
+            foundCreator.numRatings = foundCreator.numRatings + 1;
+            foundRater.hasRated = foundRater.hasRated.concat(
+              [{adviceId:req.body.adviceId, rating: req.body.rating}]);
+        }
+        else{
+            foundAdvice.totalRatings = foundAdvice.totalRatings 
+                                      -filteredHasRated[0].rating;
+            foundCreator.totalRatings = foundCreator.totalRatings
+                                      -filteredHasRated[0].rating;
+            foundRater.hasRated = foundRater.hasRated.filter(
+              (someTuple) => {
+                return someTuple.adviceId.toString() !==
+                             req.body.adviceId.toString();
+              }
+            );
+            foundRater.hasRated=foundRater.hasRated.concat([
+              {adviceId: req.body.adviceId, rating: req.body.rating}
+            ]);
+        }
+        // foundRater.hasRated=[] //reset hasrated
+        foundAdvice.save();
+        foundRater.save();
+        foundCreator.save();
+        res.send({deltaTotalRatings: (!x) ? req.body.rating
+           - filteredHasRated[0].rating:req.body.rating,
+              deltaNumRatings: (x)? 1:0
+          });
+      }
+    );
+});
+router.post("/undoRating",(req,res)=>{
+  console.log("undo rating api call");
+  Promise.all([
+    User.findById(req.body.userId),
+    User.findById(req.body.creator_id),
+    Advice.findById(req.body.adviceId)
+  ]).then( (allData) =>{
+      
+    let foundAdvice = allData[2];
+    let foundCreator=allData[1];
+    let foundRater=allData[0];
+    foundAdvice.totalRatings = foundAdvice.totalRatings + req.body.rating;
+    foundCreator.totalRatings = foundCreator.totalRatings + req.body.rating;
+    let filteredHasRated = foundRater.hasRated.filter((someTuple) =>{
+        return someTuple.adviceId.toString() === req.body.adviceId.toString();
+      }
+    );
+    let x = filteredHasRated.length === 0;
+    if( x){//foundRater has not rated
+        // foundAdvice.numRatings = foundAdvice.numRatings + 1;
+        // foundCreator.numRatings = foundCreator.numRatings + 1;
+        // foundRater.hasRated = foundRater.hasRated.concat(
+        //   [{adviceId:req.body.adviceId, rating: req.body.rating}]);
+    }
+    else{
+        foundAdvice.numRatings = foundAdvice.numRatings - 1;
+        foundCreator.numRatings = foundCreator.numRatings - 1;
+        foundAdvice.totalRatings = foundAdvice.totalRatings 
+                                  -filteredHasRated[0].rating;
+        foundCreator.totalRatings = foundCreator.totalRatings
+                                  -filteredHasRated[0].rating;
+        foundRater.hasRated = foundRater.hasRated.filter(
+          (someTuple) => {
+            return someTuple.adviceId.toString() !==
+                         req.body.adviceId.toString();
+          }
+        );
+    }
+    // foundRater.hasRated=[] //reset hasrated
+    foundAdvice.save();
+    foundRater.save();
+    foundCreator.save();
+    res.send({deltaTotalRatings: (!x) ?
+       - filteredHasRated[0].rating:0,
+          deltaNumRatings: -1
+      });
+    }
+  );
+  
+});
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

@@ -6,7 +6,10 @@ const UserSchema = new mongoose.Schema({
   googleid: String,
   numLikes : {type: Number, default:0},
   numAdvices : {type: Number, default:0},
-  hasLiked: [ObjectId]
+  hasLiked: [ObjectId],
+  hasRated: [{adviceId: ObjectId, rating: Number}],
+  numRatings: {type: Number, default:0},
+  totalRatings: {type:Number, default:0},
 });
 
 // compile model from schema

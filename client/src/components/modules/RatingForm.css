@@ -3,6 +3,8 @@
     flex-direction: column;
     border-radius: 8px;
     box-shadow: 0px 0px 8px #000000;
+    margin-top:16px;
+    margin-left:16px;
     align-items: center;
     width: 400px;
     height: 344px;
@@ -75,7 +77,7 @@
     display: flex;
     flex-direction: row;
     width:100%;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
     height:24px;
 }
 .enlighteningLabel{
@@ -123,7 +125,7 @@
     height: 54px;
     background-color: #32C7AC;
     border-radius: 8px;
-    margin-top:36px;
+    margin-top:28px;
 }
 .submitRatingButton:hover{
     background-color: rgb(32, 126, 109);
@@ -169,4 +171,27 @@
 .paramStyle19::-webkit-slider-thumb{border-color:rgb( calc(100 * .75), calc(247 * .75), calc(205*.75));                background:rgb( calc((100 - 255) * (1 - .4) + 255),calc((247 - 255) * (1 - .4) + 255),calc((205 - 255) * (1 - .4) + 255)  );}
 .paramStyle20::-webkit-slider-thumb{border-color:rgb( calc(85  * .75), calc(250 * .75), calc(226*.75));               background:rgb(  calc(( 85 - 255) * (1 - .4) + 255),calc((250 - 255) * (1 - .4) + 255),calc((226 - 255) * (1 - .4) + 255)  );}
 .paramStyle21::-webkit-slider-thumb{border-color:rgb( calc(69  * .75), calc(252 * .75), calc(247*.75));               background:rgb(  calc(( 69 - 255) * (1 - .4) + 255),calc((252 - 255) * (1 - .4) + 255),calc((247 - 255) * (1 - .4) + 255)  );}
+
+.GLOWparamStyle0 {box-shadow: 0px 0px 64px rgb( 148, 0, 0);}
+.GLOWparamStyle1 {box-shadow: 0px 0px 64px rgb( 157, 22, 1);}
+.GLOWparamStyle2 {box-shadow: 0px 0px 64px rgb( 167, 44, 2);}
+.GLOWparamStyle3 {box-shadow: 0px 0px 64px rgb( 176, 67, 3);}
+.GLOWparamStyle4 {box-shadow: 0px 0px 64px rgb( 186, 89, 4);}
+.GLOWparamStyle5 {box-shadow: 0px 0px 64px rgb( 195, 112, 6);}
+.GLOWparamStyle6 {box-shadow: 0px 0px 64px rgb( 205, 134, 7);}
+.GLOWparamStyle7 {box-shadow: 0px 0px 64px rgb( 214, 156, 8);}
+.GLOWparamStyle8 {box-shadow: 0px 0px 64px rgb( 224, 179, 9);}
+.GLOWparamStyle9 {box-shadow: 0px 0px 64px rgb( 233, 201, 10);}
+.GLOWparamStyle10{box-shadow: 0px 0px 64px rgb( 243, 224, 12);}
+.GLOWparamStyle11{box-shadow: 0px 0px 64px rgb( 227, 226, 33);}
+.GLOWparamStyle12{box-shadow: 0px 0px 64px rgb( 211, 229, 54);}
+.GLOWparamStyle13{box-shadow: 0px 0px 64px rgb( 195, 231, 76);}
+.GLOWparamStyle14{box-shadow: 0px 0px 64px rgb( 179, 234, 97);}
+.GLOWparamStyle15{box-shadow: 0px 0px 64px rgb( 163, 236, 118);}
+.GLOWparamStyle16{box-shadow: 0px 0px 64px rgb( 148, 239, 140);}
+.GLOWparamStyle17{box-shadow: 0px 0px 64px rgb( 132, 241, 161);}
+.GLOWparamStyle18{box-shadow: 0px 0px 64px rgb( 116, 244, 182);}
+.GLOWparamStyle19{box-shadow: 0px 0px 64px rgb( 100, 246, 204);}
+.GLOWparamStyle20{box-shadow: 0px 0px 64px rgb( 84, 249, 225);}
+.GLOWparamStyle21{box-shadow: 0px 0px 64px rgb( 69, 252, 247);}
 

@@ -20,6 +20,13 @@ class StoryButton extends Component {
 
     }
     render(){
+        if (this.props.adviceStory === ""){
+            return (
+                <div className="noStory">
+                    No story
+                </div>
+            )
+        }
         if (this.props.showStory) {
             return(
                 <div className="hideStory">

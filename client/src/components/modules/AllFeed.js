@@ -20,6 +20,7 @@ class AllFeed extends Component {
         super(props); //has prop isSidePaneHidden
         this.state={
             adviceList: [],
+            nameOfProfile:"",
         }
     }
     componentDidMount(){
@@ -35,6 +36,11 @@ class AllFeed extends Component {
               this.setState({ adviceList: this.state.adviceList.concat([adviceObj]) });
         });
         });
+        get("/api/getProfileById", {idProfile: this.props.idQueriedUser}).then(
+            (foundProfile)=>{
+                this.setState({ nameOfProfile: foundProfile.name})
+            }
+        )
     }
     componentDidUpdate(prevProps){
         if( 
@@ -95,17 +101,20 @@ class AllFeed extends Component {
             )
         );
         } else {
-            advices = <div>No advices!</div>;
+            advices = <div className = "noAdvicesSignal">No advices!</div>;
         }
         let label = "";
+        let labelBig="";
         if (this.props.idQueriedUser !== "") {
-            label = "user: " + this.props.idQueriedUser;
+            label = "user:  ";
+            labelBig=this.state.nameOfProfile;
         }
         else if(this.props.categoryName!==""){
-            label = "category: " + this.props.categoryName;
+            label = "category:  ";
+            labelBig=this.props.categoryName;
         }
         else{
-            label="all advice";
+            labelBig="all";
         }
         let sph = "sidePaneExpanded";
         if(this.props.isSidePaneHidden){
@@ -120,7 +129,8 @@ class AllFeed extends Component {
                 />
                 <div className={sph}>
                     <div className="categoryLabelTop">
-                        {label}
+                        <div className="littleLabel">{label}</div>
+                        <div>{labelBig}</div>
                     </div>
                     {advices}
                     {this.props.isShowingPostPopup 

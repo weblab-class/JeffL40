@@ -265,8 +265,8 @@ router.post("/undoRating",(req,res)=>{
     let foundAdvice = allData[2];
     let foundCreator=allData[1];
     let foundRater=allData[0];
-    foundAdvice.totalRatings = foundAdvice.totalRatings + req.body.rating;
-    foundCreator.totalRatings = foundCreator.totalRatings + req.body.rating;
+    // foundAdvice.totalRatings = foundAdvice.totalRatings + req.body.rating;
+    // foundCreator.totalRatings = foundCreator.totalRatings + req.body.rating;
     let filteredHasRated = foundRater.hasRated.filter((someTuple) =>{
         return someTuple.adviceId.toString() === req.body.adviceId.toString();
       }
@@ -298,7 +298,7 @@ router.post("/undoRating",(req,res)=>{
     foundCreator.save();
     res.send({deltaTotalRatings: (!x) ?
        - filteredHasRated[0].rating:0,
-          deltaNumRatings: -1
+          deltaNumRatings: (!x)?-1:0
       });
     }
   );

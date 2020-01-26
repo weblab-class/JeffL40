@@ -4,7 +4,9 @@
     width:1488px;
     width: 100%;
     margin-left:32px;
-    justify-content: center;
+    height:678px;
+    padding-left:24px;
+    padding-top:12px;
 }
 .sidePaneExpandedProfile{
     display:flex;
@@ -12,10 +14,129 @@
     width:1170px;
     width: 100%;
     margin-left:350px;
-    justify-content: center;
+    height: 678px;
+    padding-left:24px;
+    padding-top:12px;
 }
 
 .feedContainer {
     width: 100vw;
     display: flex;
 }
+.profileNameLabel{
+    display:flex;
+    font-size: 72px;
+    font-weight: bold;
+}
+.statsBlock{
+    display: flex;
+    flex-direction: column;
+    margin-left: 96px;
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+.numAdvicesLabel{
+    display: flex;
+    flex-direction: row;
+    margin-top:12px;
+}
+.numRatingsLabelProfile{
+    display: flex;
+    flex-direction: row;
+    margin-top:12px;
+}
+.numAdvicesStat{
+    font-weight: bold;
+}
+.numRatingsStat{
+    font-weight: bold;
+}
+.viewLink{
+    display:flex;
+    border:1px solid black;
+    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: 100;
+    width:320px;
+    flex-direction: column;
+    font-size: 32px;
+    padding:8px;
+    margin-top:24px;
+    box-shadow: 0px 0px 4px black;
+}
+.viewLink:hover{
+    background-color: rgb(245, 245, 245);
+    box-shadow: none;
+    box-shadow: inset 0px 0px 4px black;
+}
+.rowGroup{
+    display: flex;
+    flex-direction: row;
+}
+.rankContainer{
+    display: flex;
+    flex-direction: column;
+    margin-right:8px;
+    margin:auto;
+}
+.rankImage{
+    display:flex;
+    width:360px;
+    height:360px;
+}
+.rankDescription{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 96px;
+}
+.rankLabel{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 48px;
+}
+.rankFormatContainer{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.leftBrace{
+    display:flex;
+    font-size: 96px;
+    margin-left:36px;
+    margin-right:36px;
+}
+.rightBrace{
+    display:flex;
+    font-size: 96px;
+    margin-right: 36px;
+    margin-left:36px;
+}
+.rankGlow0 {text-shadow: 0px 0px 12px rgb( 148, 0, 0);}
+.rankGlow1 {text-shadow: 0px 0px 12px rgb( 157, 22, 1);}
+.rankGlow2 {text-shadow: 0px 0px 12px rgb( 167, 44, 2);}
+.rankGlow3 {text-shadow: 0px 0px 12px rgb( 176, 67, 3);}
+.rankGlow4 {text-shadow: 0px 0px 12px rgb( 186, 89, 4);}
+.rankGlow5 {text-shadow: 0px 0px 12px rgb( 195, 112, 6);}
+.rankGlow6 {text-shadow: 0px 0px 12px rgb( 205, 134, 7);}
+.rankGlow7 {text-shadow: 0px 0px 12px rgb( 214, 156, 8);}
+.rankGlow8 {text-shadow: 0px 0px 12px rgb( 224, 179, 9);}
+.rankGlow9 {text-shadow: 0px 0px 12px rgb( 233, 201, 10);}
+.rankGlow10{text-shadow: 0px 0px 12px rgb( 243, 224, 12);}
+.rankGlow11{text-shadow: 0px 0px 12px rgb( 227, 226, 33);}
+.rankGlow12{text-shadow: 0px 0px 12px rgb( 211, 229, 54);}
+.rankGlow13{text-shadow: 0px 0px 12px rgb( 195, 231, 76);}
+.rankGlow14{text-shadow: 0px 0px 12px rgb( 179, 234, 97);}
+.rankGlow15{text-shadow: 0px 0px 12px rgb( 163, 236, 118);}
+.rankGlow16{text-shadow: 0px 0px 12px rgb( 148, 239, 140);}
+.rankGlow17{text-shadow: 0px 0px 12px rgb( 132, 241, 161);}
+.rankGlow18{text-shadow: 0px 0px 12px rgb( 116, 244, 182);}
+.rankGlow19{text-shadow: 0px 0px 12px rgb( 100, 246, 204);}
+.rankGlow20{text-shadow: 0px 0px 12px rgb( 84, 249, 225);}
+.rankGlow21{text-shadow: 0px 0px 12px rgb( 69, 252, 247);}

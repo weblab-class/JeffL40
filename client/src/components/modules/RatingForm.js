@@ -26,6 +26,7 @@ class RatingForm extends Component {
             adviceId: this.props.adviceId,
             rating: this.state.currentRating,
         }
+        this.props.switchRatingForm();
         post("/api/submitRating", body).then(
             (deltaObj) => {
                 console.log("received delta Obj", deltaObj);
@@ -41,6 +42,7 @@ class RatingForm extends Component {
             creator_id: this.props.creator_id,
             adviceId: this.props.adviceId,
         }
+        this.props.switchRatingForm();
         post("/api/undoRating", body).then(
             (deltaObj) => {
                 this.props.updateRatings(deltaObj.deltaTotalRatings, -1)
@@ -80,6 +82,7 @@ class RatingForm extends Component {
     }
     render(){
         let styleParam = this.getColor(this.state.currentRating);
+        let glowParam = "GLOW"+styleParam;
         let badAdviceModifier = (this.state.currentRating < 112)? "midTextModifier":"";
         let goodAdviceModifier = (this.state.currentRating>240)? "midTextModifier":"";
         if (this.state.currentRating<48){
@@ -89,39 +92,39 @@ class RatingForm extends Component {
             goodAdviceModifier="largeTextModifier"
         };
         return (
-            <div className="ratingFormContainer">
-                <div className="instructions unselectable">
-                    Pick the color that corresponds to your rating.
+                <div className={"ratingFormContainer "+glowParam}>
+                    <div className="instructions unselectable">
+                        Pick the color that corresponds to your rating.
+                    </div>
+                        <div className="labelContainer unselectable">
+                            <div 
+                                className={"badAdviceLabel unselectable " 
+                                            + badAdviceModifier
+                                            }>
+                                        bad advice
+                            </div>
+                            <div 
+                                className={"enlighteningLabel unselectable "
+                                            +goodAdviceModifier
+                                            }>
+                                    enlightening
+                            </div>
+                        </div>
+                        <div className="rangeContainer">
+                            <input type="range" onChange = {this.handleChange}
+                                    min="0" max="351"
+                                    className={"rangeSlider "+styleParam}></input>
+                        </div>
+                    {/* <div className="ratingLabel">
+                        currentRating: {this.state.currentRating}
+                    </div> */}
+                    <button onClick = {this.submitRating} className="submitRatingButton unselectable">
+                        submit rating
+                    </button>
+                    <button onClick = {this.undoRating} className="undoRatingButton unselectable">
+                        undo rating
+                    </button>
                 </div>
-                    <div className="labelContainer unselectable">
-                        <div 
-                            className={"badAdviceLabel unselectable " 
-                                        + badAdviceModifier
-                                        }>
-                                	bad advice
-                        </div>
-                        <div 
-                            className={"enlighteningLabel unselectable "
-                                        +goodAdviceModifier
-                                        }>
-                                enlightening
-                        </div>
-                    </div>
-                    <div className="rangeContainer">
-                        <input type="range" onChange = {this.handleChange}
-                                min="0" max="351"
-                                className={"rangeSlider "+styleParam}></input>
-                    </div>
-                {/* <div className="ratingLabel">
-                    currentRating: {this.state.currentRating}
-                </div> */}
-                <button onClick = {this.submitRating} className="submitRatingButton unselectable">
-                    submit rating
-                </button>
-                <button onClick = {this.undoRating} className="undoRatingButton unselectable">
-                    undo rating
-                </button>
-            </div>
         )
     }
 }

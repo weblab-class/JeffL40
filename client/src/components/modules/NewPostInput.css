@@ -67,6 +67,7 @@
 }
 .searchButton:hover{
   background-color: rgb(32, 112, 112);
+  box-shadow: 2px 0px 16px rgb(238, 238, 118);
 }
 .separator{
     margin-top:8px;

@@ -3,20 +3,20 @@
     position:fixed;
     height: 100%;
     background-color:#074568;
-    /* border: 1px solid red; */
     width:32px;
     margin-left:318px;
-    color:white;
+    color:#ffa600;
     font-size: 24px;
     align-items: center;
     justify-content: center;
+    box-shadow: 4px 1px 4px 2px #074568;
 }
 .theBarCollapsed{
     display:flex;
     position:fixed;
     height: 100%;
-    background-color:#074568;
-    /* border: 1px solid red; */
+    background-color:#ffa600;
+    box-shadow: 4px 0px 4px 2px #ffa600;
     width:32px;
     margin-left:0px;
     color:white;
@@ -25,7 +25,8 @@
     justify-content: center;
 }
 .theBarExpanded:hover{
-    opacity:50%;
+    background-color: rgb(48, 102, 128);
+    box-shadow: 4px 1px 4px 2px rgb(48,102,128);
 }
 .theBarCollapsed:hover{
     opacity:50%;

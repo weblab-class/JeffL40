@@ -4,9 +4,9 @@
     width:1488px;
     width: 100%;
     margin-left:32px;
-    justify-content: center;
     align-items: center;
-    background-color: #3B0060;;
+    background-color: #3B0060;
+    min-height: 686px;
 }
 .sidePaneExpanded{
     display:flex;
@@ -14,9 +14,9 @@
     width:1170px;
     width: 100%;
     margin-left:350px;
-    justify-content: center;
     align-items: center;
-    background-color: #3B0060;;
+    background-color: #3B0060;
+    min-height: 686px;
 }
 .categoryLabelTop{
     display:flex;
@@ -25,9 +25,22 @@
     font-size: 64px;
     color:white;
     border:none;
+    margin-bottom:16px;
 }
 
 .feedContainer {
     width: 100vw;
     display: flex;
+}
+.littleLabel{
+    display:flex;
+    font-size:32px;
+    height:32px;
+    padding-top: 32px;
+}
+.noAdvicesSignal{
+    display:flex;
+    color:white;
+    margin-top:8px;
+    font-size:24px;
 }

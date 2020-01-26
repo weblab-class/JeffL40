@@ -22,6 +22,7 @@ class SingleCard extends Component {
             showStory:false,
             numRatings:0,
             totalRatings:0,
+            showRatingForm:false,
         }
     }
     componentDidMount(){
@@ -29,24 +30,6 @@ class SingleCard extends Component {
                        numRatings: this.props.numRatings,
                        totalRatings: this.props.totalRatings,
         });
-        
-        //console.log("userHasLiked", this.props.userHasLiked);
-        //console.log("adviceId: ", this.props.adviceId);
-        // let inLiked= this.props.userHasLiked.includes(
-        //     this.props.adviceId
-        // );
-        // //console.log("inLiked", inLiked);
-        // if (inLiked) {
-        //    // console.log("conditional branch inLiked");
-        //     this.setState({initLikedState:1});
-        // }
-        // else {
-        //     //console.log("conditional branch not inLiked");
-        //     this.setState({initLikedState:0}, () => {
-        //        // console.log("initLikeState after compMount", this.state.initLikedState);
-        //     });
-        // }
-        
     }
     incrementShownLikes = ()=> {
         console.log("numLikes state", this.state.numLikes);
@@ -75,71 +58,129 @@ class SingleCard extends Component {
     hideStory=()=>{
         this.setState({showStory:false});
     }
+    switchRatingForm=()=>{
+        this.setState({showRatingForm:!this.state.showRatingForm});
+    }
+    getColor=(ratingValue)=>{
+        let ret = "cardStyle";
+        if(ratingValue<16){ret+="0";}
+        else if(ratingValue<32){ret+="1";}
+        else if(ratingValue<48){ret+="2";}
+        else if(ratingValue<64){ret+="3";}
+        else if(ratingValue<80){ret+="4";}
+        else if(ratingValue<96){ret+="5";}
+        else if(ratingValue<112){ret+="6";}
+        else if(ratingValue<128){ret+="7";}
+        else if(ratingValue<144){ret+="8";}
+        else if(ratingValue<160){ret+="9";}
+        else if(ratingValue<176){ret+="10";}
+        else if(ratingValue<192){ret+="11";}
+        else if(ratingValue<208){ret+="12";}
+        else if(ratingValue<224){ret+="13";}
+        else if(ratingValue<240){ret+="14";}
+        else if(ratingValue<256){ret+="15";}
+        else if(ratingValue<272){ret+="16";}
+        else if(ratingValue<288){ret+="17";}
+        else if(ratingValue<304){ret+="18";}
+        else if(ratingValue<320){ret+="19";}
+        else if(ratingValue<336){ret+="20";}
+        else {ret+="21";}
+        return ret;
+    }
     render(){
+        let glowString = this.getColor((this.state.numRatings===0)?0:this.state.totalRatings/this.state.numRatings);
 
         let inLiked= this.props.userHasLiked.includes(
             this.props.adviceId
         ) ? 1 : 0;
-        
-        return(
-            <div className="cardContainer">
-                <div className="topLabel">
-                    <div className="catLabel">
-                        {this.props.category}
-                    </div>
-                    <div className="authorLabel">
-                        {this.props.creator_name}
-                    </div>
-                </div>
-                <div className="bodyContainer">
-                    <div className="content">
-                        {"A single card"}
-                        <br/>
-                        {"advice: " + this.props.advice}
-                        <br/>
-                        {"adviceStory: " + this.props.adviceStory}
-                        <br/>
-                        {"creator: " + this.props.creator_name}
-                        <br/>
-                        {"creatorId: " + this.props.creator_id}
-                        <br/>
-                        {"category: " + this.props.category}
-                        <br/>
-                        {"date: " + this.props.timeStamp}
-                        <br/>
-                        {"adviceId: " + this.props.adviceId}
-                        <br/>
-                        {"numLikes: " + this.state.numLikes}
-                        <br/>
-                        {"numRatings: " + this.state.numRatings}
-                        <br/>
-                        {"totalRatings: " + this.state.totalRatings}
-                        <br/>
-                        <RatingForm
+
+        let rateText=(this.state.showRatingForm)?
+        <div className="closeMark">close<br/><div>&#x24E7;</div></div>:<div>rate!</div>
+
+        let ratingForm = (this.state.showRatingForm)?
+            <RatingForm
                             userId = {this.props.userId}
                             adviceId = {this.props.adviceId}
                             creator_id = {this.props.creator_id}
                             updateRatings = {this.updateRatings}
-                        />
-                        {(this.state.showStory) ? <div className="adviceStory">
-                        {this.props.adviceStory}
-                        </div>:<div></div>}
+                            switchRatingForm = {this.switchRatingForm}
+                        />:<div></div>;
+        
+        
+        return(
+            <div className = "superCardContainer">
+                <div className={"cardContainer "+glowString}>
+                    <div className="topLabel">
+                        <Link to={"/category/"+this.props.category} className="catLabel">
+                            {this.props.category}
+                        </Link>
+                        <Link to={"/profile/"+this.props.creator_id}className="authorLabel">
+                            {this.props.creator_name}
+                        </Link>
                     </div>
-                    <LikeButton
-                        adviceId = {this.props.adviceId}
-                        creator_id = {this.props.creator_id}
-                        userId = {this.props.userId}
-                        initLikedState = {inLiked}
-                        incrementShownLikes = {this.incrementShownLikes}
-                        decrementShownLikes = {this.decrementShownLikes}
+                    <div className="bodyContainer">
+                        <div className="content">
+                            <div className="adviceBox">
+                                {this.props.advice}
+                            </div>
+                            {/* <br/>
+                            {"adviceStory: " + this.props.adviceStory}
+                            <br/>
+                            {"creator: " + this.props.creator_name}
+                            <br/>
+                            {"creatorId: " + this.props.creator_id}
+                            <br/>
+                            {"category: " + this.props.category}
+                            <br/>
+                            {"date: " + this.props.timeStamp.substring(0,10)}
+                            <br/>
+                            {"adviceId: " + this.props.adviceId}
+                            <br/>
+                            {"numLikes: " + this.state.numLikes}
+                            <br/>
+                            {"numRatings: " + this.state.numRatings}
+                            <br/>
+                            {"totalRatings: " + this.state.totalRatings}
+                            <br/> */}
+                            {(this.state.showStory) ? 
+                            <div className="adviceStory">
+                                <div className="storyIndicator">
+                                        {this.props.creator_name}'s story
+                                </div>
+                                <div>{this.props.adviceStory}</div>
+                            </div>
+                            
+                            :<div></div>}
+
+                            <div className="dateRateContainer">
+                                <div className="dateLabelBottom">
+                                    posted&nbsp;{this.props.timeStamp.substring(0,10)}
+                                </div>
+                                <div className="numRatingsLabel">
+                                    {this.state.numRatings}&nbsp;ratings
+                                </div>
+                            </div>
+                        </div>
+                        {/* <LikeButton
+                            adviceId = {this.props.adviceId}
+                            creator_id = {this.props.creator_id}
+                            userId = {this.props.userId}
+                            initLikedState = {inLiked}
+                            incrementShownLikes = {this.incrementShownLikes}
+                            decrementShownLikes = {this.decrementShownLikes}
+                        /> */}
+                        <button onClick = {this.switchRatingForm} className = "rateButton">
+                            {rateText}
+                        </button>
+                    </div>
+                    <StoryButton
+                        adviceStory={this.props.adviceStory}
+                        showStory={this.state.showStory}
+                        displayStory={this.displayStory}
+                        hideStory={this.hideStory}
                     />
                 </div>
-                <StoryButton
-                    adviceStory={this.props.adviceStory}
-                    showStory={this.state.showStory}
-                    displayStory={this.displayStory}
-                    hideStory={this.hideStory}
-                />
+                {ratingForm}
             </div>
         )
     }

@@ -4,7 +4,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import PostPopup from "./PostPopup.js";
 
 import "../../utilities.css";
-import "./Profile.css";
+import "./SearchResults.css";
 import { get } from "../../utilities";
 import SidePane from "./SidePane.js";
 
@@ -54,27 +54,27 @@ class SearchResults extends Component {
   }
 
   render() {
-    let sph = "sidePaneExpanded";
+    let sph = "sidePaneExpandedSR";
     if(this.props.isSidePaneHidden){
-        sph = "sidePaneCollapsed";
+        sph = "sidePaneCollapsedSR";
     }
 
     let usersToDisplay = null;
         const hasUser = this.state.gotUsers.length !== 0;
         if (hasUser) {
-            let x = "/user/";
+            let x = "/profile/";
             usersToDisplay = this.state.gotUsers
                       .map((usrObj) => (
-                        <Link to= {x + usrObj._id} key={`userResult_${usrObj._id}`}>
-                            singleUser
-                            <br/>
-                            name: {usrObj.name}
-                            <br/>
-                            id: {usrObj._id}
+                        <Link to= {x + usrObj._id} 
+                        className="resultsItem userColor"
+                        key={`userResult_${usrObj._id}`}>
+                            {usrObj.name}
+                            {/* <br/>
+                            id: {usrObj._id} */}
                         </Link>
         ));
         } else {
-            usersToDisplay = <div>No users found.</div>;
+            usersToDisplay = <div className="noneFoundLabel">No users found.</div>;
         };
     let catsToDisplay = null;
         const hasCat = this.state.gotCategories.length !== 0;
@@ -82,16 +82,14 @@ class SearchResults extends Component {
             let x = "/category/";
             catsToDisplay = this.state.gotCategories
                       .map((catObj) => (
-                        <Link to= {x + catObj.categoryName} key={`catResult_${catObj._id}`}>
-                            singleCategory
-                            <br/>
-                            name: {catObj.categoryName}
-                            <br/>
-                            id: {catObj._id}
+                        <Link to= {x + catObj.categoryName} 
+                        className="resultsItem"
+                        key={`catResult_${catObj._id}`}>
+                            {catObj.categoryName}
                         </Link>
         ));
         } else {
-            catsToDisplay = <div>No categories found.</div>;
+            catsToDisplay = <div className="noneFoundLabel">No categories found.</div>;
         };
 
     return(
@@ -102,9 +100,20 @@ class SearchResults extends Component {
                     showSidePane = {this.props.showSidePane}
                 />
         <div className={sph}>
-          search results go here. Received search query: {this.props.ambiguousQuery}
-          {catsToDisplay}
-          {usersToDisplay}
+          <div className="resultsDescription">
+            <div className="miniTagRes">results for&nbsp;</div> 
+            <div className="queryLabel">{this.props.ambiguousQuery}</div>
+          </div>
+          <div className="resultGrouping">
+            <div className="singleResultsColumn">
+                <div className="categoriesColumnLabel">categories</div>
+                {catsToDisplay}
+            </div>
+            <div className="singleResultsColumn">
+                <div className="usersColumnLabel">users</div>
+                {usersToDisplay}
+            </div>
+          </div>
           {this.props.isShowingPostPopup 
                 && <PostPopup
                     closePostPopup={this.props.closePostPopup}

@@ -24,7 +24,7 @@ class SearchBox extends Component {
                 <div className="searchLabel">
                     Search
                     <SearchInput 
-                        defaultText="searchHere"
+                        defaultText="search here!"
                     />
                 </div>
                 <div className="commonCategories">

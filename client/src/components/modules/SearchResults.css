@@ -1,31 +1,87 @@
 .u-showBorder{
     border:1px solid black;
 }
-.sidePaneCollapsed{
+.sidePaneCollapsedSR{
     display:flex;
     flex-direction: column;
-    border: black 1px solid;
     width:1488px;
     width: 100%;
     margin-left:32px;
-    justify-content: center;
+    background-color: honeydew;
+    min-height: 686px;
 }
-.sidePaneExpanded{
+.sidePaneExpandedSR{
     display:flex;
     flex-direction: column;
-    border: black 1px solid;
     width:1170px;
     width: 100%;
     margin-left:350px;
-    justify-content: center;
+    min-height:686px;
+    background-color: honeydew;
 }
-.categoryLabel{
+.resultGrouping{
     display:flex;
+    flex-direction: row;
     justify-content: center;
-    border: red 1px solid;
 }
-
-.feedContainer {
-    width: 100vw;
+.singleResultsColumn{
     display: flex;
+    flex-direction: column;
+    margin-left: 32px;
+    margin-right:32px;
+}
+.resultsItem{
+    display:flex;
+    flex-direction: column;
+    color:rgb(255, 242, 242);
+    text-decoration: none;
+    background-color: rgb(153, 48, 125);
+    border-radius: 8px;
+    border: 1px solid white;
+    padding:4px;
+    margin-bottom: 16px;
+    font-size:24px;
+    width: 196px;
+    min-height:48px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow:hidden;
+}
+.userColor{
+    background-color: rgb(42, 65, 170);
+}
+.resultsItem:hover{
+    opacity:75%;
+}
+.resultsDescription{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top:4px;
+    margin-bottom:16px;
+}
+.miniTagRes{
+    display: flex;
+    font-size: 32px;
+    padding-top: 32px;
+}
+.queryLabel{
+    display: flex;
+    font-size: 64px;
+}
+.categoriesColumnLabel{
+    display: flex;
+    font-size: 36px;
+    /* padding-top: 1px; */
+    color:rgb(153, 48, 125);
+}
+.usersColumnLabel{
+    display: flex;
+    font-size: 36px;
+    color: rgb(42, 65, 170);
+}
+.noneFoundLabel{
+    display:flex;
+    font-size: 24px;
 }

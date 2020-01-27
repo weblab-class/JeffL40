@@ -10,7 +10,6 @@ class RatingForm extends Component {
     constructor(props){
         super(props); //props: adviceId
         this.state={
-            isShowing: true,
             currentRating: 0,
         }
     }
@@ -32,7 +31,6 @@ class RatingForm extends Component {
                 console.log("received delta Obj", deltaObj);
                 this.props.updateRatings(deltaObj.deltaTotalRatings,
                      deltaObj.deltaNumRatings);
-                this.setState({isShowing:false});
             }
         )
     }
@@ -45,8 +43,8 @@ class RatingForm extends Component {
         this.props.switchRatingForm();
         post("/api/undoRating", body).then(
             (deltaObj) => {
-                this.props.updateRatings(deltaObj.deltaTotalRatings, -1)
-                this.setState({isShowing:false});
+                this.props.updateRatings(deltaObj.deltaTotalRatings, deltaObj.deltaNumRatings)
+                
             }
         )
     }
@@ -91,6 +89,12 @@ class RatingForm extends Component {
         if (this.state.currentRating>304){
             goodAdviceModifier="largeTextModifier"
         };
+        console.log("ratingform received inithasrated", this.props.initHasRated)
+        let undoButtonToDisplay = 
+            (true)?
+                    <button onClick = {this.undoRating} className="undoRatingButton unselectable">
+                        undo previous rating
+                    </button>:<div></div>;
         return (
                 <div className={"ratingFormContainer "+glowParam}>
                     <div className="instructions unselectable">
@@ -121,9 +125,7 @@ class RatingForm extends Component {
                     <button onClick = {this.submitRating} className="submitRatingButton unselectable">
                         submit rating
                     </button>
-                    <button onClick = {this.undoRating} className="undoRatingButton unselectable">
-                        undo rating
-                    </button>
+                    {undoButtonToDisplay}
                 </div>
         )
     }

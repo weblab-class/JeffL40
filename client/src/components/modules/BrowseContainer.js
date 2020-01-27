@@ -26,6 +26,7 @@ class BrowseContainer extends Component {
             userHasLiked: [],
             userLikes: 0,
             userAdvices: 0,
+            userHasRated: [],
         }
     }
     hideSidePane = () => {
@@ -42,6 +43,9 @@ class BrowseContainer extends Component {
                     userHasLiked: foundUser.hasLiked,
                     userLikes: foundUser.numLikes,
                     userAdvices: foundUser.numAdvices,
+                    userHasRated: foundUser.hasRated.map((someTuple)=>{
+                        return someTuple.adviceId
+                    }),
                 })
             }
         )
@@ -50,7 +54,6 @@ class BrowseContainer extends Component {
 
     // }
     render(){
-        console.log("this.props.userHasLiked from BRcontain", this.props.userHasLiked);
         return(
             <div className="container">
                 {/* <SidePane
@@ -71,6 +74,7 @@ class BrowseContainer extends Component {
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
                         showSidePane = {this.showSidePane}
+                        userHasRated = {this.state.userHasRated}
                     />
                     <AllFeed
                         path = "/user"
@@ -83,6 +87,7 @@ class BrowseContainer extends Component {
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
                         showSidePane = {this.showSidePane}
+                        userHasRated = {this.state.userHasRated}
                     />
                     <AllFeed
                         path = "/user/:idQueriedUser"
@@ -94,6 +99,7 @@ class BrowseContainer extends Component {
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
                         showSidePane = {this.showSidePane}
+                        userHasRated = {this.state.userHasRated}
                     />
                     <AllFeed
                         path = "/category/"
@@ -106,6 +112,7 @@ class BrowseContainer extends Component {
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
                         showSidePane = {this.showSidePane}
+                        userHasRated = {this.state.userHasRated}
                     />
                     <AllFeed
                         path = "/category/:categoryName"
@@ -117,6 +124,7 @@ class BrowseContainer extends Component {
                         closePostPopup={this.props.closePostPopup}
                         hideSidePane = {this.hideSidePane}
                         showSidePane = {this.showSidePane}
+                        userHasRated = {this.state.userHasRated}
                     />
                     <Profile
                         path = "/profile/:idProfile"

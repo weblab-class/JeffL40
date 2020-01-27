@@ -32,13 +32,12 @@ class NavBar extends Component {
                         <Link to={profileString} className="navbarLink u-inlineBlock">
                         Profile
                         </Link>
-                        <a
+                        <button
                             className="navbarLink u-inlineBlock"
-                            href="#"
                             onClick={this.props.openPostPopup}
                         >
                             Add advice
-                        </a>
+                        </button>
                         <GoogleLogout
                             className="u-inlineBlock u-showBorder logoutContainer"
                             clientId={GOOGLE_CLIENT_ID}

@@ -22,9 +22,12 @@
     text-decoration: none;
     color: #FFFFFF;
     margin-top: 16px;
+    border:none;
+    background-color: black;
 }
 .navbarLink:hover{
     opacity:70%;
+    cursor:pointer;
 }
 .logoutContainer{
     display:flex;

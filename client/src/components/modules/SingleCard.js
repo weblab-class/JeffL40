@@ -23,6 +23,7 @@ class SingleCard extends Component {
             numRatings:0,
             totalRatings:0,
             showRatingForm:false,
+            initHasRated:false,
         }
     }
     componentDidMount(){
@@ -60,6 +61,12 @@ class SingleCard extends Component {
     }
     switchRatingForm=()=>{
         this.setState({showRatingForm:!this.state.showRatingForm});
+    }
+    trueHasRated=()=>{
+        this.setState({initHasRated:true});
+    }
+    falseHasRated=()=>{
+        this.setState({initHasRated:false});
     }
     getColor=(ratingValue)=>{
         let ret = "cardStyle";
@@ -104,6 +111,9 @@ class SingleCard extends Component {
                             creator_id = {this.props.creator_id}
                             updateRatings = {this.updateRatings}
                             switchRatingForm = {this.switchRatingForm}
+                            trueHasRated={this.trueHasRated}
+                            falseHasRated={this.falseHasRated}
+                            initHasRated = {this.state.initHasRated}
                         />:<div></div>;
         
         

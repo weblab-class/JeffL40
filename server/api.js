@@ -129,14 +129,14 @@ router.get( "/getProfileById" //passed id
 
 router.get( "/categoriesWithSubstring"
   , (req,res) =>{ //req has substring
-    Category.find({categoryName: {$regex: req.query.target}}).then(
+    Category.find({categoryName: {$regex: req.query.target, $options: 'i'}}).then(
       (foundCategories) => {res.send( foundCategories)}
     )
   }
 );
 router.get( "/usersWithName"
   , (req, res) =>{//req has Name
-    User.find({name: {$regex: req.query.target}}).then(
+    User.find({name: {$regex: req.query.target, $options: 'i'}}).then(
       (foundUsers)=>{res.send( foundUsers)}
     )
   }

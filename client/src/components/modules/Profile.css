@@ -93,6 +93,7 @@
     align-items: center;
     justify-content: center;
     font-size: 96px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .rankLabel{
     display:flex;
@@ -100,6 +101,7 @@
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 48px;
+    color:rgb(147, 137, 148);
 }
 .rankFormatContainer{
     display:flex;

@@ -84,10 +84,37 @@ class Profile extends Component {
       else if (score < 120){
         return "sol"
       }
-      else {
+      else if (score < 140){
+        return "Ω"
+      }
+      else{
         return "enlightened"
       }
   }
+  // getRankIcon=(numberOfAdvices, numberOfRatings)=>{
+  //   let score = numberOfAdvices + numberOfRatings;
+  //   if(score < 20){ //candle
+  //     return <div className="rankIcon">&#x1F56F;</div>
+  //   }
+  //   else if (score < 40){ //lamp
+  //     return <div className="rankIcon">🪔</div>
+  //   }
+  //   else if (score < 60){ //lantern
+  //     return <div className="rankIcon">&#x1F3EE;</div>
+  //   }
+  //   else if (score < 80){ //fire
+  //     return <div className="rankIcon">&#x1f525;</div>
+  //   }
+  //   else if (score < 100){ //chandelier
+  //     return <div className="rankIcon"></div>
+  //   }
+  //   else if (score < 120){ //sol
+  //     return <div className="rankIcon">&#9728;</div>
+  //   }
+  //   else { //enlightened
+  //     return <div className="rankIcon">&#x3a9;</div>
+  //   }
+  // }
   getRankStyleString=(numberOfAdvices, numberOfRatings, totalRatings)=>{
       let score = (numberOfRatings===0)?0:totalRatings/numberOfRatings;
       let ret = "rankGlow";
@@ -153,7 +180,7 @@ class Profile extends Component {
           </div>
           <div className="rankContainer unselectable">
               <div className="rankLabel unselectable">
-                &#x2014;&#x2014;&#x2014;&#x2014;&#x25cf;&nbsp;-RANK-&nbsp;&#x25cf;&#x2014;&#x2014;&#x2014;&#x2014;
+                &#x2014;&#x2014;RANK&#x2014;&#x2014;
               </div>
               <div className="rankFormatContainer unselectable">
                 <div className="leftBrace unselectable">

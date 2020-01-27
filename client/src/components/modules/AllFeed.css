@@ -25,6 +25,7 @@
     font-size: 64px;
     color:white;
     border:none;
+    text-shadow: 0px 0px 8px yellow;
     margin-bottom:16px;
 }
 
@@ -36,7 +37,7 @@
     display:flex;
     font-size:32px;
     height:32px;
-    padding-top: 32px;
+    padding-top: 30px;
 }
 .noAdvicesSignal{
     display:flex;

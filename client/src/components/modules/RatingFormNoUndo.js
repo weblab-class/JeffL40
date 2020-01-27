@@ -6,7 +6,7 @@ import "../../utilities.css";
 import "./RatingForm.css";
 
 
-class RatingForm extends Component {
+class RatingFormNoUndo extends Component {
     constructor(props){
         super(props); //props: adviceId
         this.state={
@@ -108,13 +108,13 @@ class RatingForm extends Component {
             goodAdviceModifier="largeTextModifier"
         };
         console.log("ratingform received inithasrated", this.props.initHasRated)
-        let undoButtonToDisplay = 
-            (
-                true||
-                this.props.initHasRated)?
-                    <button onClick = {this.undoRating} className="undoRatingButton unselectable">
-                        undo previous rating
-                    </button>:<div></div>;
+        // let undoButtonToDisplay = 
+        //     (
+        //         true||
+        //         this.props.initHasRated)?
+        //             <button onClick = {this.undoRating} className="undoRatingButton unselectable">
+        //                 undo previous rating
+        //             </button>:<div></div>;
         return (
                 <div className={"ratingFormContainer "+glowParam}>
                     <div className="instructions unselectable">
@@ -145,9 +145,8 @@ class RatingForm extends Component {
                     <button onClick = {this.submitRating} className="submitRatingButton unselectable">
                         submit rating
                     </button>
-                    {undoButtonToDisplay}
                 </div>
         )
     }
 }
-export default RatingForm;
+export default RatingFormNoUndo;

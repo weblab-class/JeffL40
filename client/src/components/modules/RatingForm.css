@@ -7,9 +7,12 @@
     margin-left:16px;
     align-items: center;
     width: 400px;
-    height: 344px;
     background-color:  #F9F9F9;
     border: 1px solid #000000;
+    padding-bottom: 8px;
+}
+.noDisplay{
+    display:none;
 }
 .rangeSlider{
     width:352px;
@@ -107,7 +110,7 @@
     color: #AE7777;
     background-color: #f9f9f9;
     border: none;
-    margin-top:24px;
+    margin-bottom: 24px;
 }
 .undoRatingButton:hover{
     color:rgb(126, 86, 86);
@@ -126,6 +129,7 @@
     background-color: #32C7AC;
     border-radius: 8px;
     margin-top:28px;
+    margin-bottom: 24px;
 }
 .submitRatingButton:hover{
     background-color: rgb(32, 126, 109);

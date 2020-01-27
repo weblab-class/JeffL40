@@ -4,6 +4,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import LikeButton from "./LikeDislikeButtons.js";
 import StoryButton from "./StoryButton.js";
 import RatingForm from "./RatingForm.js";
+import RatingFormNoUndo from "./RatingFormNoUndo.js";
 
 import "../../utilities.css";
 import "./SingleCard.css";
@@ -27,10 +28,19 @@ class SingleCard extends Component {
         }
     }
     componentDidMount(){
+        console.log("card advice id: ", this.props.adviceId)
+
         this.setState({numLikes: this.props.numLikes,
                        numRatings: this.props.numRatings,
                        totalRatings: this.props.totalRatings,
+                       initHasRated: this.props.initHasRated,
         });
+        console.log("after comp mount setstate inithasrated", this.state.initHasRated)
+    }
+    componentDidUpdate(prevProps){
+        if(prevProps.initHasRated!==this.props.initHasRated){
+            this.setState({initHasRated:this.props.initHasRated})
+        }
     }
     incrementShownLikes = ()=> {
         console.log("numLikes state", this.state.numLikes);
@@ -68,6 +78,9 @@ class SingleCard extends Component {
     falseHasRated=()=>{
         this.setState({initHasRated:false});
     }
+    switchHasRated=()=>{
+        this.setState({initHasRated: !this.state.initHasRated})
+    }
     getColor=(ratingValue)=>{
         let ret = "cardStyle";
         if(ratingValue<16){ret+="0";}
@@ -95,6 +108,7 @@ class SingleCard extends Component {
         return ret;
     }
     render(){
+        console.log("singlecard receivd inithasrated prop", this.props.initHasRated)
         let glowString = this.getColor((this.state.numRatings===0)?0:this.state.totalRatings/this.state.numRatings);
 
         let inLiked= this.props.userHasLiked.includes(
@@ -104,18 +118,55 @@ class SingleCard extends Component {
         let rateText=(this.state.showRatingForm)?
         <div className="closeMark">close<br/><div>&#x24E7;</div></div>:<div>rate!</div>
 
-        let ratingForm = (this.state.showRatingForm)?
-            <RatingForm
-                            userId = {this.props.userId}
-                            adviceId = {this.props.adviceId}
-                            creator_id = {this.props.creator_id}
-                            updateRatings = {this.updateRatings}
-                            switchRatingForm = {this.switchRatingForm}
-                            trueHasRated={this.trueHasRated}
-                            falseHasRated={this.falseHasRated}
-                            initHasRated = {this.state.initHasRated}
-                        />:<div></div>;
-        
+        // let ratingForm = (
+        //     this.state.showRatingForm)?
+        //     (this.props.initHasRated)?
+        //     <RatingForm
+        //                     userId = {this.props.userId}
+        //                     adviceId = {this.props.adviceId}
+        //                     creator_id = {this.props.creator_id}
+        //                     updateRatings = {this.updateRatings}
+        //                     switchRatingForm = {this.switchRatingForm}
+        //                     trueHasRated={this.trueHasRated}
+        //                     falseHasRated={this.falseHasRated}
+        //                 />:<RatingForm
+        //                 userId = {this.props.userId}
+        //                 adviceId = {this.props.adviceId}
+        //                 creator_id = {this.props.creator_id}
+        //                 updateRatings = {this.updateRatings}
+        //                 switchRatingForm = {this.switchRatingForm}
+        //                 trueHasRated={this.trueHasRated}
+        //                 falseHasRated={this.falseHasRated}
+        //             />:<div></div>;
+        let ratingForm = <div></div>;
+        if (this.state.showRatingForm){
+            if(this.state.initHasRated){
+                console.log("displaying with undo")
+                ratingForm=<RatingForm
+                userId = {this.props.userId}
+                adviceId = {this.props.adviceId}
+                creator_id = {this.props.creator_id}
+                updateRatings = {this.updateRatings}
+                switchRatingForm = {this.switchRatingForm}
+                trueHasRated={this.trueHasRated}
+                falseHasRated={this.falseHasRated}
+                initHasRated={this.state.initHasRated}
+                />
+            }
+            else{
+                console.log("displaying rFnoUndo")
+                ratingForm=<RatingFormNoUndo
+                userId = {this.props.userId}
+                adviceId = {this.props.adviceId}
+                creator_id = {this.props.creator_id}
+                updateRatings = {this.updateRatings}
+                switchRatingForm = {this.switchRatingForm}
+                trueHasRated={this.trueHasRated}
+                falseHasRated={this.falseHasRated}
+                initHasRated={this.state.initHasRated}
+                />
+            }
+        }
         
         return(
             <div className = "superCardContainer">

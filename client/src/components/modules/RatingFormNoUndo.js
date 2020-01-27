@@ -116,7 +116,7 @@ class RatingFormNoUndo extends Component {
         //                 undo previous rating
         //             </button>:<div></div>;
         return (
-                <div className={"ratingFormContainer "+glowParam}>
+                <div className={"ratingFormContainer noUndoModifier "+glowParam}>
                     <div className="instructions unselectable">
                         Pick the color that corresponds to your rating.
                     </div>

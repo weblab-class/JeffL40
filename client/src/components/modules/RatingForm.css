@@ -10,6 +10,10 @@
     background-color:  #F9F9F9;
     border: 1px solid #000000;
     padding-bottom: 8px;
+    max-height: 340px;
+}
+.noUndoModifier{
+    max-height: 288px;
 }
 .noDisplay{
     display:none;

@@ -79,6 +79,10 @@ form {
   cursor: pointer;
 }
 
+.u-italics {
+  font-style: italic;
+}
+
 .u-link {
   color: var(--primary);
   text-decoration: none;

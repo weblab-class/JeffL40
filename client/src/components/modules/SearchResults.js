@@ -81,6 +81,7 @@ class SearchResults extends Component {
         if (hasCat) {
             let x = "/category/";
             catsToDisplay = this.state.gotCategories
+                      .filter((catObj)=>{return catObj.categoryName!==""})
                       .map((catObj) => (
                         <Link to= {x + catObj.categoryName} 
                         className="resultsItem"
@@ -91,6 +92,9 @@ class SearchResults extends Component {
         } else {
             catsToDisplay = <div className="noneFoundLabel">No categories found.</div>;
         };
+        let k = (this.props.ambiguousQuery === "")?
+            <div className="everythingLabel">everything</div>:
+            <div className="queryLabel">{this.props.ambiguousQuery}</div>;
 
     return(
       <div className={"feedContainer"}>
@@ -102,7 +106,7 @@ class SearchResults extends Component {
         <div className={sph}>
           <div className="resultsDescription">
             <div className="miniTagRes">results for&nbsp;</div> 
-            <div className="queryLabel">{this.props.ambiguousQuery}</div>
+            {k}
           </div>
           <div className="resultGrouping">
             <div className="singleResultsColumn">

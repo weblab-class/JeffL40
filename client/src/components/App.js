@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import LoginPage from "./pages/LoginPage.js";
 //import Profile from "./pages/Profile.js";
@@ -65,7 +65,9 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({ userId: undefined });
-    post("/api/logout");
+    post("/api/logout").then(
+      ()=>{navigate("/")}
+    );
   };
 
   closePostPopup = () => {

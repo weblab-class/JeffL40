@@ -85,3 +85,9 @@
     display:flex;
     font-size: 24px;
 }
+.everythingLabel{
+    display:flex;
+    font-size:48px;
+    font-style: italic;
+    margin-top:16px;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
@@ -18,6 +18,12 @@ class SearchInput extends Component {
         value: event.target.value,
       });
     };
+    handleKeyDown = (event)=>{
+      if (event.key === 'Enter') {
+        navigate("/searchResults/"+this.state.value);
+        this.setState({value: ""});
+       }
+    }
     render() {
       let linkDest = "/searchResults/";
       linkDest = linkDest + this.state.value;
@@ -28,6 +34,7 @@ class SearchInput extends Component {
             placeholder={this.props.defaultText}
             value={this.state.value}
             onChange={this.handleChange}
+            onKeyPress={(event)=>this.handleKeyDown(event)}
             className="searchTextInput"
           />
           <Link to={linkDest} 

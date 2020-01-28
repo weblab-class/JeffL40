@@ -34,11 +34,13 @@
     background-color:#ba0000;
     color: white;
     border:none;
+    border-radius: 0px 0px 0px 8px;
     font-size: 28px;
     justify-content: center;
 }
 .cancelButton:hover{
     background-color: #6d0000;
+    cursor:pointer;
 }
 .xMark{
     display: flex;

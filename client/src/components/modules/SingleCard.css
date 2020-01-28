@@ -10,6 +10,10 @@
     margin-bottom: auto;
     border-radius: 8px;
 }
+.noAdviceLabel{
+    font-style: italic;
+    color: rgb(223, 197, 223);
+}
 .superCardContainer{
     display:flex;
     flex-direction: row;
@@ -105,6 +109,7 @@
     color: #FBFF38;
     font-size:32px;
     font-weight: bold;
+    outline:none;
 }
 .rateButton:hover{
     background-color: rgb(37, 148, 128);

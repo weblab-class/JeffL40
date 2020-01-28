@@ -27,7 +27,10 @@
 .theBarExpanded:hover{
     background-color: rgb(48, 102, 128);
     box-shadow: 4px 1px 4px 2px rgb(48,102,128);
+    cursor:pointer;
 }
 .theBarCollapsed:hover{
-    opacity:50%;
+    background-color:#ffc75f;
+    box-shadow: 4px 0px 4px 2px #ffc75f;
+    cursor:pointer;
 }

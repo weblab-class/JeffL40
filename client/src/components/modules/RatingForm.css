@@ -61,9 +61,6 @@
 
 
 }
-.rangeSlider:focus::-webkit-slider-runnable-track {
-    /* background: #367ebd; */
-  }
 .ratingLabel{
     color:black;
 }

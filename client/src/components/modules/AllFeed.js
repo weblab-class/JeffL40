@@ -34,11 +34,12 @@ class AllFeed extends Component {
               this.setState({ adviceList: this.state.adviceList.concat([adviceObj]) });
         });
         });
-        get("/api/getProfileById", {idProfile: this.props.idQueriedUser}).then(
-            (foundProfile)=>{
-                this.setState({ nameOfProfile: foundProfile.name})
-            }
-        )
+        if(this.props.idQueriedUser){
+            get("/api/getProfileById", {idProfile: this.props.idQueriedUser}).then(
+                (foundProfile)=>{
+                    this.setState({ nameOfProfile: foundProfile.name})
+                }
+        )}
     }
     componentDidUpdate(prevProps){
         if( 

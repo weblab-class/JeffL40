@@ -115,6 +115,10 @@ class SingleCard extends Component {
             this.props.adviceId
         ) ? 1 : 0;
 
+        let adviceToDisplay = (this.props.advice === "")? 
+            <div className="noAdviceLabel">empty advice</div>
+            :<div>{this.props.advice}</div>;
+
         let rateText=(this.state.showRatingForm)?
         <div className="closeMark">close<br/><div>&#x24E7;</div></div>:<div>rate!</div>
 
@@ -182,7 +186,7 @@ class SingleCard extends Component {
                     <div className="bodyContainer">
                         <div className="content">
                             <div className="adviceBox">
-                                {this.props.advice}
+                                {adviceToDisplay}
                             </div>
                             {/* <br/>
                             {"adviceStory: " + this.props.adviceStory}

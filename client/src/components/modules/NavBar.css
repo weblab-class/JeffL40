@@ -24,6 +24,7 @@
     margin-top: 16px;
     border:none;
     background-color: black;
+    outline:none;
 }
 .navbarLink:hover{
     opacity:70%;

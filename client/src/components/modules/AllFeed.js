@@ -48,14 +48,9 @@ class AllFeed extends Component {
         ){
         const query = { idQueriedUser: this.props.idQueriedUser
             , categoryName: this.props.categoryName};
-        console.log("allFeed received: " , query);
-        console.log('query.idQueriedUser === "null"', query.idQueriedUser === "null");
         get("/api/advice", query).then((adviceObjs) => {
         let reversedAdviceObjs = adviceObjs.reverse();
         this.setState( {adviceList: reversedAdviceObjs});
-        // reversedAdviceObjs.map((adviceObj) => {
-        //     this.setState({ adviceList: this.state.adviceList.concat([adviceObj]) });
-        // });
         });};
     }
     addNewAdvice = ( adviceObject) => {
@@ -76,7 +71,6 @@ class AllFeed extends Component {
         }
     }
     render(){
-        console.log("allfeed received userhasrated", this.props.userHasRated)
         let advices = null;
         const hasAdvice = this.state.adviceList.length !== 0;
         if (hasAdvice) {
@@ -118,8 +112,10 @@ class AllFeed extends Component {
             labelBig="all";
         }
         let sph = "sidePaneExpanded";
+        let wrapModifier = "";
         if(this.props.isSidePaneHidden){
             sph = "sidePaneCollapsed";
+            wrapModifier = "doWrap";
         }
         return(
             <div className={"feedContainer"}>
@@ -133,7 +129,9 @@ class AllFeed extends Component {
                         <div className="littleLabel">{label}</div>
                         <div>{labelBig}</div>
                     </div>
+                    <div className={wrapModifier}>
                     {advices}
+                    </div>
                     {this.props.isShowingPostPopup 
                         && <PostPopup
                             closePostPopup={this.props.closePostPopup}

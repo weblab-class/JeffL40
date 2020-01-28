@@ -112,6 +112,7 @@
     background-color: #f9f9f9;
     border: none;
     margin-bottom: 24px;
+    outline:none;
 }
 .undoRatingButton:hover{
     color:rgb(126, 86, 86);
@@ -131,6 +132,7 @@
     border-radius: 8px;
     margin-top:28px;
     margin-bottom: 24px;
+    outline:none;
 }
 .submitRatingButton:hover{
     background-color: rgb(32, 126, 109);

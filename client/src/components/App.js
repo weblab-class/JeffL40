@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
+    //console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({
@@ -79,8 +79,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("appjsreceivererd", this.state.userHasLiked)
-    console.log("appjs user", this.state.userId)
     if (
       //true||
       this.state.userId){

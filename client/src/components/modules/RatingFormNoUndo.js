@@ -38,7 +38,6 @@ class RatingFormNoUndo extends Component {
         
         post("/api/submitRating", body).then(
             (deltaObj) => {
-                console.log("received delta Obj", deltaObj);
                 this.props.updateRatings(deltaObj.deltaTotalRatings,
                      deltaObj.deltaNumRatings);
             }
@@ -107,14 +106,6 @@ class RatingFormNoUndo extends Component {
         if (this.state.currentRating>304){
             goodAdviceModifier="largeTextModifier"
         };
-        console.log("ratingform received inithasrated", this.props.initHasRated)
-        // let undoButtonToDisplay = 
-        //     (
-        //         true||
-        //         this.props.initHasRated)?
-        //             <button onClick = {this.undoRating} className="undoRatingButton unselectable">
-        //                 undo previous rating
-        //             </button>:<div></div>;
         return (
                 <div className={"ratingFormContainer noUndoModifier "+glowParam}>
                     <div className="instructions unselectable">

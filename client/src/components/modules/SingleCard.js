@@ -28,14 +28,11 @@ class SingleCard extends Component {
         }
     }
     componentDidMount(){
-        console.log("card advice id: ", this.props.adviceId)
-
         this.setState({numLikes: this.props.numLikes,
                        numRatings: this.props.numRatings,
                        totalRatings: this.props.totalRatings,
                        initHasRated: this.props.initHasRated,
         });
-        console.log("after comp mount setstate inithasrated", this.state.initHasRated)
     }
     componentDidUpdate(prevProps){
         if(prevProps.initHasRated!==this.props.initHasRated){
@@ -43,25 +40,20 @@ class SingleCard extends Component {
         }
     }
     incrementShownLikes = ()=> {
-        console.log("numLikes state", this.state.numLikes);
         this.setState({
             numLikes: this.state.numLikes + 1
         });
     }
     decrementShownLikes=()=> {
-        console.log("numLikes state", this.state.numLikes);
         this.setState({
             numLikes: this.state.numLikes - 1
         });
     }
     updateRatings = (deltaTotalRatings, deltaNumRatings) =>{
-        console.log("updateRatings called");
-        console.log("totalRatings before", this.state.totalRatings)
         this.setState({
             numRatings: this.state.numRatings + deltaNumRatings,
             totalRatings: this.state.totalRatings + deltaTotalRatings,
         });
-        console.log("totalRatings after", this.state.totalRatings)
     }
     displayStory=()=>{
         this.setState({showStory:true});
@@ -108,7 +100,6 @@ class SingleCard extends Component {
         return ret;
     }
     render(){
-        console.log("singlecard receivd inithasrated prop", this.props.initHasRated)
         let glowString = this.getColor((this.state.numRatings===0)?0:this.state.totalRatings/this.state.numRatings);
 
         let inLiked= this.props.userHasLiked.includes(
@@ -121,31 +112,9 @@ class SingleCard extends Component {
 
         let rateText=(this.state.showRatingForm)?
         <div className="closeMark">close<br/><div>&#x24E7;</div></div>:<div>rate!</div>
-
-        // let ratingForm = (
-        //     this.state.showRatingForm)?
-        //     (this.props.initHasRated)?
-        //     <RatingForm
-        //                     userId = {this.props.userId}
-        //                     adviceId = {this.props.adviceId}
-        //                     creator_id = {this.props.creator_id}
-        //                     updateRatings = {this.updateRatings}
-        //                     switchRatingForm = {this.switchRatingForm}
-        //                     trueHasRated={this.trueHasRated}
-        //                     falseHasRated={this.falseHasRated}
-        //                 />:<RatingForm
-        //                 userId = {this.props.userId}
-        //                 adviceId = {this.props.adviceId}
-        //                 creator_id = {this.props.creator_id}
-        //                 updateRatings = {this.updateRatings}
-        //                 switchRatingForm = {this.switchRatingForm}
-        //                 trueHasRated={this.trueHasRated}
-        //                 falseHasRated={this.falseHasRated}
-        //             />:<div></div>;
         let ratingForm = <div></div>;
         if (this.state.showRatingForm){
             if(this.state.initHasRated){
-                console.log("displaying with undo")
                 ratingForm=<RatingForm
                 userId = {this.props.userId}
                 adviceId = {this.props.adviceId}
@@ -158,7 +127,6 @@ class SingleCard extends Component {
                 />
             }
             else{
-                console.log("displaying rFnoUndo")
                 ratingForm=<RatingFormNoUndo
                 userId = {this.props.userId}
                 adviceId = {this.props.adviceId}

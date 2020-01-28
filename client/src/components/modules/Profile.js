@@ -91,30 +91,33 @@ class Profile extends Component {
         return "enlightened"
       }
   }
-  // getRankIcon=(numberOfAdvices, numberOfRatings)=>{
-  //   let score = numberOfAdvices + numberOfRatings;
-  //   if(score < 20){ //candle
-  //     return <div className="rankIcon">&#x1F56F;</div>
-  //   }
-  //   else if (score < 40){ //lamp
-  //     return <div className="rankIcon">🪔</div>
-  //   }
-  //   else if (score < 60){ //lantern
-  //     return <div className="rankIcon">&#x1F3EE;</div>
-  //   }
-  //   else if (score < 80){ //fire
-  //     return <div className="rankIcon">&#x1f525;</div>
-  //   }
-  //   else if (score < 100){ //chandelier
-  //     return <div className="rankIcon"></div>
-  //   }
-  //   else if (score < 120){ //sol
-  //     return <div className="rankIcon">&#9728;</div>
-  //   }
-  //   else { //enlightened
-  //     return <div className="rankIcon">&#x3a9;</div>
-  //   }
-  // }
+  getRankNumber=(numberOfAdvices, numberOfRatings)=>{
+    let score = numberOfAdvices + numberOfRatings;
+      if(score < 20){
+        return "1"
+      }
+      else if (score < 40){
+        return "2"
+      }
+      else if (score < 60){
+        return "3"
+      }
+      else if (score < 80){
+        return "4"
+      }
+      else if (score < 100){
+        return "5"
+      }
+      else if (score < 120){
+        return "6"
+      }
+      else if (score < 140){
+        return "7"
+      }
+      else{
+        return "8"
+      }
+  }
   getRankStyleString=(numberOfAdvices, numberOfRatings, totalRatings)=>{
       let score = (numberOfRatings===0)?0:totalRatings/numberOfRatings;
       let ret = "rankGlow";
@@ -149,7 +152,8 @@ class Profile extends Component {
                                    this.state.numberOfRatings);
     let rankGlow = this.getRankStyleString(this.state.numberOfAdvices,
                    this.state.numberOfRatings, this.state.totalRatings);
-    console.log(rankGlow)
+    let rankNumber = this.getRankNumber(this.state.numberOfAdvices,
+                                    this.state.numberOfRatings);
     if(this.props.isSidePaneHidden){
         sph = "sidePaneCollapsedProfile";
     }
@@ -180,7 +184,7 @@ class Profile extends Component {
           </div>
           <div className="rankContainer unselectable">
               <div className="rankLabel unselectable">
-                &#x2014;&#x2014;RANK&#x2014;&#x2014;
+                &#x2014;&#x2014;&nbsp;RANK&#8239;{rankNumber}&nbsp;&#x2014;&#x2014;
               </div>
               <div className="rankFormatContainer unselectable">
                 <div className="leftBrace unselectable">

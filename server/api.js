@@ -47,11 +47,6 @@ router.post("/initsocket", (req, res) => {
 router.get("/advice", (req, res) => {
   // empty selector means get all documents
   //Advice.deleteMany({}).then((a)=>{1}); //uncomment&refresh to delete all advice
-  // console.log("apiReceivedThisQuery: ", req.query);
-  // console.log("apiReceivedThisQueryID: ", req.query.idQueriedUser);
-  // console.log('req.query.categoryName && req.query.categoryName !== ""'
-  //            , req.query.categoryName && req.query.categoryName !== "");
-  // console.log('req.query.idQueriedUser !== ""', req.query.idQueriedUser !== "");
   if (req.query.categoryName 
         && req.query.categoryName !== ""
         ){

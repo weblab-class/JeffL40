@@ -43,6 +43,9 @@
     max-width: 320px;
     text-decoration: none;
 }
+.catLabel:hover{
+    color: #a78ab1;
+}
 .authorLabel{
     display: flex;
     color: rgba(0, 247, 255, 0.877);
@@ -50,6 +53,9 @@
     align-items: center;
     text-align: center;
     text-decoration: none;
+}
+.authorLabel:hover{
+    color: rgba(0, 179, 185, 0.877);
 }
 .bodyContainer{
     display: flex;

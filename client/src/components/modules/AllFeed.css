@@ -48,11 +48,6 @@
 .doWrap{
     display:flex;
     flex-wrap: wrap;
-    width:1488px;
-    width: 100%;
-    margin-left:32px;
-    align-items: center;
     background-color: #3B0060;
-    min-height: 686px;
     justify-content: space-evenly;
 }

@@ -15,6 +15,9 @@
   color: rgba(255, 255, 255, 0.76);
   opacity: 75%;
 }
+.searchTextInput:focus{
+  box-shadow: -1px 0px 4px 3px rgb(172, 219, 233);
+}
 .searchButton{
     display: flex;
     width:64px;

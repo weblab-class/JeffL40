@@ -72,17 +72,17 @@ router.post("/advice"
     let creator_id = "noID";
     let creator_name = "noName";
     if(req.user){
-      console.log( "user received in post advice request", req.user);
+      //console.log( "user received in post advice request", req.user);
       creator_id = req.user._id;
       creator_name = req.user.name;
       User.findOne({_id: req.user._id}).then(
         (poster) => {
-          console.log("posterOfAdviceToInc: ", poster);
+          //console.log("posterOfAdviceToInc: ", poster);
           poster.numAdvices = poster.numAdvices + 1;
           poster.save();
         }
       )
-      console.log("new numAdvices: ", req.user.numAdvices);
+      //console.log("new numAdvices: ", req.user.numAdvices);
 
     }
     Category.findOne({categoryName: req.body.category}).then(
@@ -90,7 +90,7 @@ router.post("/advice"
         if(foundCategory){
           foundCategory.numPosts = foundCategory.numPosts + 1;
           foundCategory.save();
-          console.log("updated category: ", foundCategory);
+          //console.log("updated category: ", foundCategory);
         }
         else{
           const newCategory = new Category({
@@ -98,7 +98,7 @@ router.post("/advice"
             numPosts: 1,
           });
           newCategory.save();
-          console.log("new category: ", newCategory);
+          //console.log("new category: ", newCategory);
         }
       }
     );
@@ -138,7 +138,7 @@ router.get( "/usersWithName"
 );
 
 router.post("/like",auth.ensureLoggedIn, (req, res) => {
-            console.log("like post request issued");
+            //console.log("like post request issued");
             Advice.findById( req.body.adviceId).then(
               ( foundAdvice) => {
                 foundAdvice.numLikes = foundAdvice.numLikes + 1;
@@ -155,12 +155,14 @@ router.post("/like",auth.ensureLoggedIn, (req, res) => {
             
             User.findById(req.body.userId).then(
               (foundLiker) => {
-                console.log("foundLiker haslikedB4: ", foundLiker.hasLiked);
+                //console.log("foundLiker haslikedB4: ", foundLiker.hasLiked);
                 foundLiker.hasLiked = foundLiker.hasLiked.concat([req.body.adviceId]);
-                console.log("foundLiker hasLikedAFTR", foundLiker.hasLiked);
-                foundLiker.save().then(
-                  (liker) => console.log("Found updated liker", liker)
-                );
+                //console.log("foundLiker hasLikedAFTR", foundLiker.hasLiked);
+                foundLiker.save()
+                // .then(
+                //   (liker) => console.log("Found updated liker", liker)
+                // )
+                ;
               }
             )    
           }
@@ -185,15 +187,15 @@ router.post("/undo"
             
             User.findById(req.body.userId).then(
               (foundLiker) => {
-                console.log("foundLiker has Liked", foundLiker.hasLiked);
-                console.log("remove this Id", req.body.adviceId);
+                // console.log("foundLiker has Liked", foundLiker.hasLiked);
+                // console.log("remove this Id", req.body.adviceId);
                 let x = foundLiker.hasLiked.filter((adviceId) => {
-                  console.log("did match", adviceId.toString() !== req.body.adviceId.toString());
+                  // console.log("did match", adviceId.toString() !== req.body.adviceId.toString());
                   return adviceId.toString() !== req.body.adviceId.toString();
                 });
-                console.log("filtered", x);
+                // console.log("filtered", x);
                 foundLiker.hasLiked = x;
-                console.log("foundLiker after filter", foundLiker.hasLiked);
+                // console.log("foundLiker after filter", foundLiker.hasLiked);
                 foundLiker.save();
               }
             );
@@ -201,7 +203,7 @@ router.post("/undo"
 );
 
 router.post("/submitRating",(req,res)=>{
-    console.log("submit rating api call");
+    // console.log("submit rating api call");
     Promise.all([
       User.findById(req.body.userId),
       User.findById(req.body.creator_id),
@@ -250,7 +252,7 @@ router.post("/submitRating",(req,res)=>{
     );
 });
 router.post("/undoRating",(req,res)=>{
-  console.log("undo rating api call");
+  // console.log("undo rating api call");
   Promise.all([
     User.findById(req.body.userId),
     User.findById(req.body.creator_id),

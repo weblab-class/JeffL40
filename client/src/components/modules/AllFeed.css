@@ -4,9 +4,8 @@
     width:1488px;
     width: 100%;
     margin-left:32px;
-    align-items: center;
     background-color: #3B0060;
-    min-height: 686px;
+    min-height: 100vh;
 }
 .sidePaneExpanded{
     display:flex;
@@ -16,7 +15,7 @@
     margin-left:350px;
     align-items: center;
     background-color: #3B0060;
-    min-height: 686px;
+    min-height: 100vh;
 }
 .categoryLabelTop{
     display:flex;

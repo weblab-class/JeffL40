@@ -10,7 +10,7 @@ class RatingFormNoUndo extends Component {
     constructor(props){
         super(props); //props: adviceId
         this.state={
-            currentRating: 0,
+            currentRating: 175,
             initHasRated: false,
             isShowing: false,
         }
@@ -127,7 +127,7 @@ class RatingFormNoUndo extends Component {
                         </div>
                         <div className="rangeContainer">
                             <input type="range" onChange = {this.handleChange}
-                                    min="0" max="351"
+                                    min="0" max="351" defaultValue="175"
                                     className={"rangeSlider "+styleParam}></input>
                         </div>
                     {/* <div className="ratingLabel">
